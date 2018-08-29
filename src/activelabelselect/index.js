@@ -1,3 +1,3 @@
-import Card from './Card';
+import ActiveLabelSelect from './__test__/ActiveLabelSelect';
 
-export default Card;
+export default ActiveLabelSelect;

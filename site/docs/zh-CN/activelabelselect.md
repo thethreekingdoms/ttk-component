@@ -7,10 +7,10 @@
 render() {
   return (
     <div>
-      <Alert title="成功提示的文案" type="success" />
-      <Alert title="消息提示的文案" type="info" />
-      <Alert title="警告提示的文案" type="warning" />
-      <Alert title="错误提示的文案" type="error" />
+      <Activelabelselect title="成功提示的文案" type="success" />
+      <Activelabelselect title="消息提示的文案" type="info" />
+      <Activelabelselect title="警告提示的文案" type="warning" />
+      <Activelabelselect title="错误提示的文案" type="error" />
     </div>
   )
 }

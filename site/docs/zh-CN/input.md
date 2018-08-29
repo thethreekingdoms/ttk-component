@@ -6,477 +6,288 @@
 
 ::: demo
 ```js
-render() {
-  return <Input placeholder="请输入内容" />
-}
-```
-:::
-
-
-### 禁用状态
-
-::: demo 通过 `disabled` 属性指定是否禁用 input 组件
-```js
-render() {
-  return <Input disabled placeholder="请输入内容" />
-}
-```
-:::
-
-### 带 icon 的输入框
-
-带有图标标记输入类型
-
-::: demo 可以通过 `icon` 属性在 input 组件尾部增加显示图标。
-```js
-handleIconClick(ev) {
-
+onChange(e) {
+  console.log(e.target.value)
 }
 
 render() {
   return (
-    <Input
-      icon="time"
-      placeholder="请选择日期"
-      onIconClick={this.handleIconClick.bind(this)}
-    />
+    <div>
+      <Input onChange={this.onChange.bind(this)} placeholder="请输入内容" />
+      <span className="mk-padding"></span>
+      <Input disabled placeholder="请输入内容" />
+    </div>
+  )
+}
+```
+:::
+
+### 三种大小
+我们为 Input 输入框定义了三种尺寸（大、默认、小），高度分别为 40px、32px 和 24px
+::: demo
+```js
+render () {
+  return (
+    <div className="example-input">
+      <Input size="large" placeholder="large size" />
+      <span className="mk-padding"></span>
+      <Input placeholder="default size" />
+      <span className="mk-padding"></span>
+      <Input size="small" placeholder="small size" />
+    </div>
+  )
+}
+```
+:::
+
+
+### 前置/后置标签
+用于配置一些固定组合。
+
+::: demo
+```js
+render() {
+  const selectBefore = (
+    <Select defaultValue="Http://" style={{ width: 90 }}>
+      <Option value="Http://">Http://</Option>
+      <Option value="Https://">Https://</Option>
+    </Select>
+  )
+  const selectAfter = (
+    <Select defaultValue=".com" style={{ width: 80 }}>
+      <Option value=".com">.com</Option>
+      <Option value=".jp">.jp</Option>
+      <Option value=".cn">.cn</Option>
+      <Option value=".org">.org</Option>
+    </Select>
+  )
+  return (
+    <div>
+      <Input addonBefore="Http://" addonAfter=".com" defaultValue="mysite" />
+      <p style={{padding: '10px'}}></p>
+      <Input addonBefore={selectBefore} addonAfter={selectAfter} defaultValue="mysite" />
+    </div>
+  )
+}
+
+```
+:::
+
+
+### 输入框组合
+
+输入框的组合展现。
+
+注意：使用 compact 模式时，不需要通过 Col 来控制宽度。
+
+:::demo
+```js
+render() {
+  const InputGroup  = Input.Group
+  return(
+    <div>
+      <InputGroup size="large">
+        <Col span={5}>
+          <Input defaultValue="0571" />
+        </Col>
+        <Col span={8}>
+          <Input defaultValue="26888888" />
+        </Col>
+      </InputGroup>
+      <p></p>
+      <InputGroup compact>
+        <Input style={{ width: '20%' }} defaultValue="0571" />
+        <Input style={{ width: '30%' }} defaultValue="26888888" />
+      </InputGroup>
+      <p></p>
+      <InputGroup compact>
+        <Select defaultValue="Zhejiang">
+          <Option value="Zhejiang">Zhejiang</Option>
+          <Option value="Jiangsu">Jiangsu</Option>
+        </Select>
+        <Input style={{ width: '50%' }} defaultValue="Xihu District, Hangzhou" />
+      </InputGroup>
+      <p></p>
+      <InputGroup compact>
+        <Input style={{ width: '50%' }} defaultValue="input content" />
+        <DatePicker />
+      </InputGroup>
+    </div>
+  )
+}
+```
+:::
+
+
+### 搜索框
+带有搜索按钮的输入框，2.5.0 时新增。
+
+:::demo
+```js
+render() {
+  const Search = Input.Search
+  return (
+    <div>
+      <Search
+        placeholder="input search text"
+        onSearch={value => console.log(value)}
+        style={{ width: 200 }}
+      />
+      <br /><br />
+      <Search
+        placeholder="input search text"
+        onSearch={value => console.log(value)}
+        enterButton
+      />
+      <br /><br />
+      <Search
+        placeholder="input search text"
+        enterButton="Search"
+        size="large"
+        onSearch={value => console.log(value)}
+      />
+    </div>
   )
 }
 ```
 :::
 
 ### 文本域
+用于多行输入。
 
-可调整大小，用于输入多行文本信息
-
-::: demo 通过将 `type` 属性的值指定为 textarea。
+:::demo
 ```js
 render() {
+  const { TextArea } = Input
+  return (
+    <TextArea rows={4} />
+  )
+}
+```
+:::
+
+
+### 适应文本高度的文本域
+autosize 属性适用于 textarea 节点，并且只有高度会自动变化。另外 autosize 可以设定为一个对象，指定最小行数和最大行数。
+
+:::demo
+```js
+render() {
+  const { TextArea } = Input
+  return (
+    <div>
+      <TextArea placeholder="Autosize height based on content lines" autosize />
+      <div style={{ margin: '24px 0' }} />
+      <TextArea placeholder="Autosize height with minimum and maximum number of lines" autosize={{ minRows: 2, maxRows: 6 }} />
+    </div>
+  )
+}
+```
+:::
+
+
+### 前缀和后缀
+在输入框上添加前缀或后缀图标。
+
+:::demo
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    userName: '',
+  };
+}
+
+emitEmpty() {
+  this.setState({ userName: '' });
+}
+
+onChangeUserName(e) {
+  this.setState({ userName: e.target.value });
+}
+
+
+refFunc(node) {
+  this.userNameInput = node
+}
+
+
+render() {
+  const { userName } = this.state;
+  const suffix = userName ? <Icon type="close-circle" onClick={this.emitEmpty.bind(this)} /> : null;
   return (
     <Input
-      type="textarea"
-      autosize={{ minRows: 2, maxRows: 4}}
-      placeholder="请输入内容"
+      className="input_emitEmpty"
+      placeholder="Enter your username"
+      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+      suffix={suffix}
+      value={userName}
+      onChange={this.onChangeUserName.bind(this)}
+      ref={this.refFunc.bind(this) }
     />
-  )
+  );
 }
 ```
 :::
 
-### 可自适应文本高度的文本域
 
-通过设置 `autosize` 属性可以使得文本域的高度能够根据文本内容自动进行调整，并且 `autosize` 还可以设定为一个对象，指定最小行数和最大行数。
 
-::: demo
-```js
-render() {
-  return (
-    <div>
-      <Input
-        type="textarea"
-        autosize={true}
-        placeholder="请输入内容"
-      />
-      <div style={{ margin: '20px 0' }}></div>
-      <Input
-        type="textarea"
-        autosize={{ minRows: 2, maxRows: 4}}
-        placeholder="请输入内容"
-      />
-    </div>
-  )
-}
+## api
+
+
+### input
+| 参数          | 说明            | 类型            | 默认值   |
+|-------------  |---------------- |----------------|-------- |
+| addonAfter    | 带标签的 input，设置后置标签 | string/ReactNode   | — |
+| addonBefore   | 带标签的 input，设置前置标签 | string/ReactNode  | — |
+| defaultValue     | 输入框默认内容      | string          |  — |
+| disabled     | 是否禁用状态，默认为 false      | boolean          | false |
+| id   | 输入框的 id    | string          | — |
+| prefix | 带有前缀图标的 input | string/ReactNode | - |
+| size | 控件大小。注：标准表单内的输入框大小限制为 large。可选 large default small| string | default |
+| suffix | 带有后缀图标的 input | string|ReactNode | - |
+| type | 声明 input 类型，同原生 input 标签的 type 属性，见：MDN(请直接使用 Input.TextArea 代替 type="textarea") | string | text |
+| value | 输入框内容 | string | - |
+|onPressEnter | 按下回车的回调 | function(e) | - |
+
+
+如果 Input 在 Form.Item 内，并且 Form.Item 设置了 id 和 options 属性，则 value defaultValue 和 id 属性会被自动设置。
+
+Input 的其他属性和 React 自带的 input 一致。
+
+### Input.TextArea 
+
+| 参数            | 说明          | 类型            | 默认值        |
+|----------------|----------------|-----------------|--------------|
+| autosize        | 自适应内容高度，可设置为 true|false 或对象：{ minRows: 2, maxRows: 6 }| boolean|object | false |
+| defaultValue    | 输入框默认内容| string | - |
+| value	          | 输入框内容    | string | - |
+| onPressEnter    | 按下回车的回调 | function(e) | - |
+
+
+Input.TextArea 的其他属性和浏览器自带的 textarea 一致。
+
+
+### Input.Search
+
+| 参数            | 说明          | 类型            | 默认值        |
+|----------------|----------------|-----------------|--------------|
+| enterButton   | 是否有确认按钮，可设为按钮文字| boolean|ReactNode | false |
+|onSearch       | 点击搜索或按下回车键时的回调 | function(value, event) |
+
+其余属性和 Input 一致。
+
+
+### Input.Group
+
+| 参数            | 说明          | 类型            | 默认值        |
+|----------------|----------------|-----------------|--------------|
+| compact         | 是否用紧凑模式   | boolean        |false        |
+| size            |Input.Group 中所有的 Input 的大小，可选 large default small| string |default |
+
 ```
-:::
-
-### 复合型输入框
-
-可前置或后置元素，一般为标签或按钮
-
-::: demo 可通过 prepend 和 append 来指定在 input 中前置或者后置内容。
-```js
-render() {
-  return (
-    <div>
-      <Input placeholder="请输入内容" prepend="Http://" />
-      <Input placeholder="请输入内容" append=".com" />
-      <Input placeholder="请输入内容" prepend={
-        <Select value="">
-          {
-            ['餐厅名', '订单号', '用户电话'].map((item, index) => <Select.Option key={index} label={item} value={index} />)
-          }
-        </Select>
-      } append={<Button type="primary" icon="search">搜索</Button>} />
-    </div>
-  )
-}
+<Input.Group>
+  <Input />
+  <Input />
+</Input.Group
 ```
-:::
-
-### 尺寸
-
-::: demo 可通过 `size` 属性指定输入框的尺寸，除了默认的大小外，还提供了 large、small 和 mini 三种尺寸。
-```js
-render() {
-  return (
-    <div className="inline-input">
-      <Input placeholder="请输入内容" size="large" />
-      <Input placeholder="请输入内容" />
-      <Input placeholder="请输入内容" size="small" />
-      <Input placeholder="请输入内容" size="mini" />
-    </div>
-  )
-}
-```
-:::
-
-### 带输入建议
-
-根据输入内容提供对应的输入建议, 依赖autoComplete
-
-::: demo Autocomplete 是一个可带输入建议的输入框组件，
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    restaurants: [
-      { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-      { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-      { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-      { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
-      { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
-      { "value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号" },
-      { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
-      { "value": "十二泷町", "address": "上海市北翟路1444弄81号B幢-107" },
-      { "value": "星移浓缩咖啡", "address": "上海市嘉定区新郁路817号" },
-      { "value": "阿姨奶茶/豪大大", "address": "嘉定区曹安路1611号" },
-      { "value": "新麦甜四季甜品炸鸡", "address": "嘉定区曹安公路2383弄55号" },
-      { "value": "Monica摩托主题咖啡店", "address": "嘉定区江桥镇曹安公路2409号1F，2383弄62号1F" },
-      { "value": "浮生若茶（凌空soho店）", "address": "上海长宁区金钟路968号9号楼地下一层" },
-      { "value": "NONO JUICE  鲜榨果汁", "address": "上海市长宁区天山西路119号" },
-      { "value": "CoCo都可(北新泾店）", "address": "上海市长宁区仙霞西路" },
-      { "value": "快乐柠檬（神州智慧店）", "address": "上海市长宁区天山西路567号1层R117号店铺" },
-      { "value": "Merci Paul cafe", "address": "上海市普陀区光复西路丹巴路28弄6号楼819" },
-      { "value": "猫山王（西郊百联店）", "address": "上海市长宁区仙霞西路88号第一层G05-F01-1-306" },
-      { "value": "枪会山", "address": "上海市普陀区棕榈路" },
-      { "value": "纵食", "address": "元丰天山花园(东门) 双流路267号" },
-      { "value": "钱记", "address": "上海市长宁区天山西路" },
-      { "value": "壹杯加", "address": "上海市长宁区通协路" },
-      { "value": "唦哇嘀咖", "address": "上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元" },
-      { "value": "爱茜茜里(西郊百联)", "address": "长宁区仙霞西路88号1305室" },
-      { "value": "爱茜茜里(近铁广场)", "address": "上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺" },
-      { "value": "鲜果榨汁（金沙江路和美广店）", "address": "普陀区金沙江路2239号金沙和美广场B1-10-6" },
-      { "value": "开心丽果（缤谷店）", "address": "上海市长宁区威宁路天山路341号" },
-      { "value": "超级鸡车（丰庄路店）", "address": "上海市嘉定区丰庄路240号" },
-      { "value": "妙生活果园（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "香宜度麻辣香锅", "address": "长宁区淞虹路148号" },
-      { "value": "凡仔汉堡（老真北路店）", "address": "上海市普陀区老真北路160号" },
-      { "value": "港式小铺", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "蜀香源麻辣香锅（剑河路店）", "address": "剑河路443-1" },
-      { "value": "北京饺子馆", "address": "长宁区北新泾街道天山西路490-1号" },
-      { "value": "饭典*新简餐（凌空SOHO店）", "address": "上海市长宁区金钟路968号9号楼地下一层9-83室" },
-      { "value": "焦耳·川式快餐（金钟路店）", "address": "上海市金钟路633号地下一层甲部" },
-      { "value": "动力鸡车", "address": "长宁区仙霞西路299弄3号101B" },
-      { "value": "浏阳蒸菜", "address": "天山西路430号" },
-      { "value": "四海游龙（天山西路店）", "address": "上海市长宁区天山西路" },
-      { "value": "樱花食堂（凌空店）", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "壹分米客家传统调制米粉(天山店)", "address": "天山西路428号" },
-      { "value": "福荣祥烧腊（平溪路店）", "address": "上海市长宁区协和路福泉路255弄57-73号" },
-      { "value": "速记黄焖鸡米饭", "address": "上海市长宁区北新泾街道金钟路180号1层01号摊位" },
-      { "value": "红辣椒麻辣烫", "address": "上海市长宁区天山西路492号" },
-      { "value": "(小杨生煎)西郊百联餐厅", "address": "长宁区仙霞西路88号百联2楼" },
-      { "value": "阳阳麻辣烫", "address": "天山西路389号" },
-      { "value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13" }
-    ],
-    value1: '',
-    value2: ''
-  }
-}
-
-querySearch(queryString, cb) {
-  const { restaurants } = this.state;
-  const results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
-  // 调用 callback 返回建议列表的数据
-  cb(results);
-}
-
-createFilter(queryString) {
-  return (restaurant) => {
-    return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-  };
-}
-
-handleSelect(item) {
-
-}
-
-render() {
-  return (
-    <Layout.Row className="inline-input border-grid">
-      <Layout.Col span="12" className="tac">
-        <div className="text">激活即列出输入建议</div>
-        <AutoComplete
-          placeholder="请输入内容"
-          value={this.state.value1}
-          onFocus={e=>console.log(e, 'onFocus')}
-          onBlur={e=>console.log(e, 'onblur')}
-          fetchSuggestions={this.querySearch.bind(this)}
-          onSelect={this.handleSelect.bind(this)}
-        ></AutoComplete>
-      </Layout.Col>
-      <Layout.Col span="12" className="tac">
-        <div className="text">输入后匹配输入建议</div>
-        <AutoComplete
-          placeholder="请输入内容"
-          value={this.state.value2}
-          fetchSuggestions={this.querySearch.bind(this)}
-          onSelect={this.handleSelect.bind(this)}
-          triggerOnFocus={false}
-        ></AutoComplete>
-      </Layout.Col>
-    </Layout.Row>
-  )
-}
-```
-:::
-
-### 自定义模板
-
-可自定义输入建议的显示，依赖AutoComplete
-
-::: demo Autocomplete 是一个可带输入建议的输入框组件，
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    restaurants: [
-      { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-      { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-      { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-      { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
-      { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
-      { "value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号" },
-      { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
-      { "value": "十二泷町", "address": "上海市北翟路1444弄81号B幢-107" },
-      { "value": "星移浓缩咖啡", "address": "上海市嘉定区新郁路817号" },
-      { "value": "阿姨奶茶/豪大大", "address": "嘉定区曹安路1611号" },
-      { "value": "新麦甜四季甜品炸鸡", "address": "嘉定区曹安公路2383弄55号" },
-      { "value": "Monica摩托主题咖啡店", "address": "嘉定区江桥镇曹安公路2409号1F，2383弄62号1F" },
-      { "value": "浮生若茶（凌空soho店）", "address": "上海长宁区金钟路968号9号楼地下一层" },
-      { "value": "NONO JUICE  鲜榨果汁", "address": "上海市长宁区天山西路119号" },
-      { "value": "CoCo都可(北新泾店）", "address": "上海市长宁区仙霞西路" },
-      { "value": "快乐柠檬（神州智慧店）", "address": "上海市长宁区天山西路567号1层R117号店铺" },
-      { "value": "Merci Paul cafe", "address": "上海市普陀区光复西路丹巴路28弄6号楼819" },
-      { "value": "猫山王（西郊百联店）", "address": "上海市长宁区仙霞西路88号第一层G05-F01-1-306" },
-      { "value": "枪会山", "address": "上海市普陀区棕榈路" },
-      { "value": "纵食", "address": "元丰天山花园(东门) 双流路267号" },
-      { "value": "钱记", "address": "上海市长宁区天山西路" },
-      { "value": "壹杯加", "address": "上海市长宁区通协路" },
-      { "value": "唦哇嘀咖", "address": "上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元" },
-      { "value": "爱茜茜里(西郊百联)", "address": "长宁区仙霞西路88号1305室" },
-      { "value": "爱茜茜里(近铁广场)", "address": "上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺" },
-      { "value": "鲜果榨汁（金沙江路和美广店）", "address": "普陀区金沙江路2239号金沙和美广场B1-10-6" },
-      { "value": "开心丽果（缤谷店）", "address": "上海市长宁区威宁路天山路341号" },
-      { "value": "超级鸡车（丰庄路店）", "address": "上海市嘉定区丰庄路240号" },
-      { "value": "妙生活果园（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "香宜度麻辣香锅", "address": "长宁区淞虹路148号" },
-      { "value": "凡仔汉堡（老真北路店）", "address": "上海市普陀区老真北路160号" },
-      { "value": "港式小铺", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "蜀香源麻辣香锅（剑河路店）", "address": "剑河路443-1" },
-      { "value": "北京饺子馆", "address": "长宁区北新泾街道天山西路490-1号" },
-      { "value": "饭典*新简餐（凌空SOHO店）", "address": "上海市长宁区金钟路968号9号楼地下一层9-83室" },
-      { "value": "焦耳·川式快餐（金钟路店）", "address": "上海市金钟路633号地下一层甲部" },
-      { "value": "动力鸡车", "address": "长宁区仙霞西路299弄3号101B" },
-      { "value": "浏阳蒸菜", "address": "天山西路430号" },
-      { "value": "四海游龙（天山西路店）", "address": "上海市长宁区天山西路" },
-      { "value": "樱花食堂（凌空店）", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "壹分米客家传统调制米粉(天山店)", "address": "天山西路428号" },
-      { "value": "福荣祥烧腊（平溪路店）", "address": "上海市长宁区协和路福泉路255弄57-73号" },
-      { "value": "速记黄焖鸡米饭", "address": "上海市长宁区北新泾街道金钟路180号1层01号摊位" },
-      { "value": "红辣椒麻辣烫", "address": "上海市长宁区天山西路492号" },
-      { "value": "(小杨生煎)西郊百联餐厅", "address": "长宁区仙霞西路88号百联2楼" },
-      { "value": "阳阳麻辣烫", "address": "天山西路389号" },
-      { "value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13" }
-    ],
-    value: ''
-  }
-}
-
-querySearch(queryString, cb) {
-  const { restaurants } = this.state;
-  const results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
-  // 调用 callback 返回建议列表的数据
-  cb(results);
-}
-
-createFilter(queryString) {
-  return (restaurant) => {
-    return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-  };
-}
-
-handleSelect(item) {
-
-}
-
-render() {
-  return (
-    <AutoComplete
-      className="my-autocomplete"
-      icon="edit"
-      placeholder="请输入内容"
-      value={this.state.value}
-      fetchSuggestions={this.querySearch.bind(this)}
-      customItem={this.props.customItem}
-      onSelect={this.handleSelect.bind(this)}
-    ></AutoComplete>
-  )
-}
-```
-:::
-
-### 远程搜索
-
-从服务端搜索数据，依赖AutoComplete
-
-::: demo Autocomplete 是一个可带输入建议的输入框组件，
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    restaurants: [
-      { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-      { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-      { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-      { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
-      { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
-      { "value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号" },
-      { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
-      { "value": "十二泷町", "address": "上海市北翟路1444弄81号B幢-107" },
-      { "value": "星移浓缩咖啡", "address": "上海市嘉定区新郁路817号" },
-      { "value": "阿姨奶茶/豪大大", "address": "嘉定区曹安路1611号" },
-      { "value": "新麦甜四季甜品炸鸡", "address": "嘉定区曹安公路2383弄55号" },
-      { "value": "Monica摩托主题咖啡店", "address": "嘉定区江桥镇曹安公路2409号1F，2383弄62号1F" },
-      { "value": "浮生若茶（凌空soho店）", "address": "上海长宁区金钟路968号9号楼地下一层" },
-      { "value": "NONO JUICE  鲜榨果汁", "address": "上海市长宁区天山西路119号" },
-      { "value": "CoCo都可(北新泾店）", "address": "上海市长宁区仙霞西路" },
-      { "value": "快乐柠檬（神州智慧店）", "address": "上海市长宁区天山西路567号1层R117号店铺" },
-      { "value": "Merci Paul cafe", "address": "上海市普陀区光复西路丹巴路28弄6号楼819" },
-      { "value": "猫山王（西郊百联店）", "address": "上海市长宁区仙霞西路88号第一层G05-F01-1-306" },
-      { "value": "枪会山", "address": "上海市普陀区棕榈路" },
-      { "value": "纵食", "address": "元丰天山花园(东门) 双流路267号" },
-      { "value": "钱记", "address": "上海市长宁区天山西路" },
-      { "value": "壹杯加", "address": "上海市长宁区通协路" },
-      { "value": "唦哇嘀咖", "address": "上海市长宁区新泾镇金钟路999号2幢（B幢）第01层第1-02A单元" },
-      { "value": "爱茜茜里(西郊百联)", "address": "长宁区仙霞西路88号1305室" },
-      { "value": "爱茜茜里(近铁广场)", "address": "上海市普陀区真北路818号近铁城市广场北区地下二楼N-B2-O2-C商铺" },
-      { "value": "鲜果榨汁（金沙江路和美广店）", "address": "普陀区金沙江路2239号金沙和美广场B1-10-6" },
-      { "value": "开心丽果（缤谷店）", "address": "上海市长宁区威宁路天山路341号" },
-      { "value": "超级鸡车（丰庄路店）", "address": "上海市嘉定区丰庄路240号" },
-      { "value": "妙生活果园（北新泾店）", "address": "长宁区新渔路144号" },
-      { "value": "香宜度麻辣香锅", "address": "长宁区淞虹路148号" },
-      { "value": "凡仔汉堡（老真北路店）", "address": "上海市普陀区老真北路160号" },
-      { "value": "港式小铺", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "蜀香源麻辣香锅（剑河路店）", "address": "剑河路443-1" },
-      { "value": "北京饺子馆", "address": "长宁区北新泾街道天山西路490-1号" },
-      { "value": "饭典*新简餐（凌空SOHO店）", "address": "上海市长宁区金钟路968号9号楼地下一层9-83室" },
-      { "value": "焦耳·川式快餐（金钟路店）", "address": "上海市金钟路633号地下一层甲部" },
-      { "value": "动力鸡车", "address": "长宁区仙霞西路299弄3号101B" },
-      { "value": "浏阳蒸菜", "address": "天山西路430号" },
-      { "value": "四海游龙（天山西路店）", "address": "上海市长宁区天山西路" },
-      { "value": "樱花食堂（凌空店）", "address": "上海市长宁区金钟路968号15楼15-105室" },
-      { "value": "壹分米客家传统调制米粉(天山店)", "address": "天山西路428号" },
-      { "value": "福荣祥烧腊（平溪路店）", "address": "上海市长宁区协和路福泉路255弄57-73号" },
-      { "value": "速记黄焖鸡米饭", "address": "上海市长宁区北新泾街道金钟路180号1层01号摊位" },
-      { "value": "红辣椒麻辣烫", "address": "上海市长宁区天山西路492号" },
-      { "value": "(小杨生煎)西郊百联餐厅", "address": "长宁区仙霞西路88号百联2楼" },
-      { "value": "阳阳麻辣烫", "address": "天山西路389号" },
-      { "value": "南拳妈妈龙虾盖浇饭", "address": "普陀区金沙江路1699号鑫乐惠美食广场A13" }
-    ],
-    value: ''
-  }
-}
-
-querySearchAsync(queryString, cb) {
-  const { restaurants } = this.state;
-  const results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
-
-  clearTimeout(this.timeout);
-
-  this.timeout = setTimeout(() => {
-    cb(results);
-  }, 3000 * Math.random());
-}
-
-createFilter(queryString) {
-  return (restaurant) => {
-    return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
-  };
-}
-
-handleSelect(item) {
-
-}
-
-render() {
-  return (
-    <AutoComplete
-      placeholder="请输入内容"
-      value={this.state.value}
-      fetchSuggestions={this.querySearchAsync.bind(this)}
-      onSelect={this.handleSelect.bind(this)}
-    ></AutoComplete>
-  )
-}
-```
-:::
-
-### Input Attributes
-
-| 参数          | 说明            | 类型            | 可选值                 | 默认值   |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| type         | 类型   | string  | text/textarea | text |
-| value         | 绑定值           | string, number  | — | — |
-| maxLength     | 最大输入长度      | number          |  —  | — |
-| minLength     | 最小输入长度      | number          | — | — |
-| placeholder   | 输入框占位文本    | string          | — | — |
-| disabled      | 禁用            | boolean         | — | false   |
-| size          | 输入框尺寸，只在 `type!="textarea"` 时有效      | string          | large, small, mini  | — |
-| icon          | 输入框尾部图标    | string          | — | — |
-| rows          | 输入框行数，只对 `type="textarea"` 有效  |  number | — |  2   |
-| autosize      | 自适应内容高度，只对 `type="textarea"` 有效，可传入对象，如，{ minRows: 2, maxRows: 6 }  |  boolean/object | — |  false   |
-| autoComplete | 原生属性，自动补全 | string | on, off | off |
-| name | 原生属性 | string | — | — |
-| readOnly | 原生属性，是否只读 | boolean | — | false |
-| max | 原生属性，设置最大值 | — | — | — |
-| min | 原生属性，设置最小值 | — | — | — |
-| step | 原生属性，设置输入字段的合法数字间隔 | — | — | — |
-| resize | 控制是否能被用户缩放 | string | none, both, horizontal, vertical | — |
-| autoFocus | 原生属性，自动获取焦点 | boolean | true, false | false |
-| onIconClick | 点击 Input 内的图标的钩子函数 | function | — | — |
-| trim          | 对input内容进行trim    | boolean    | — | false |
-
-### Autocomplete Attributes
-
-| 参数          | 说明            | 类型            | 可选值                 | 默认值   |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| placeholder   | 输入框占位文本   | string          | — | — |
-| disabled      | 禁用            | boolean         | — | false   |
-| value         | 必填值输入绑定值   | string  | — | — |
-| customItem  | 通过该参数指定自定义的输入建议列表项的组件名 | Element  | — | — |
-| fetchSuggestions | 返回输入建议的方法，仅当你的输入建议数据 resolve 时，通过调用 callback(data:[]) 来返回它  | Function(queryString, callback)  | — | — |
-| popperClass | Autocomplete 下拉列表的类名 | string | — | — |
-| triggerOnFocus | 是否在输入框 focus 时显示建议列表 | boolean | — | true |
-| onIconClick | 点击图标的回调函数 | function | — | — |
-| icon          | 输入框尾部图标    | string          | — | — |
-
-### Autocomplete Events
-| 事件名称 | 说明 | 回调参数 |
-|---------|--------|---------|
-| onSelect | 点击选中建议项时触发 | 选中建议项 |
