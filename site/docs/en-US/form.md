@@ -538,12 +538,12 @@ render() {
               key={index}
               label={`Domain ${index}`}
               prop={`domains:${index}`}
-              rules={{
+              rules={
                 type: 'object', required: true,
                 fields: {
                   value: { required: true, message: 'Domain can not be null', trigger: 'blur' }
                 }
-              }}
+              }
             >
               <Input value={domain.value} onChange={this.onDomainChange.bind(this, index)}></Input>
               <Button onClick={this.removeDomain.bind(this, domain)}>Delete</Button>
