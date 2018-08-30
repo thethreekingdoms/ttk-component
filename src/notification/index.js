@@ -1,3 +1,3 @@
-import NotificationCenter from './NotificationCenter';
+import { notification } from 'antd';
 
-export default NotificationCenter;
+export default notification;

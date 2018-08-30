@@ -1,3 +1,3 @@
-import AutoComplete from './AutoComplete';
+import {AutoComplete} from 'antd';
 
 export default AutoComplete;

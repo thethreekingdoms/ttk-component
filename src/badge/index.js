@@ -1,3 +1,3 @@
-import Badge from './Badge'
+import { Badge } from 'antd'
 
 export default Badge

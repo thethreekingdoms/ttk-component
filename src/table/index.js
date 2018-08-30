@@ -1,6 +1,3 @@
-import Table from './TableStore';
-import TableColumn from './TableColumn';
-
-Table.Column = TableColumn;
+import {Table} from 'antd'
 
 export default Table;

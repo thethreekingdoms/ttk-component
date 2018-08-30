@@ -1,3 +1,3 @@
-import Transfer from './Transfer';
+import {Transfer} from 'antd';
 
 export default Transfer;

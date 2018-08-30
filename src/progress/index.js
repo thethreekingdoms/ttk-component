@@ -1,3 +1,3 @@
-import Progress from './Progress';
+import { Progress } from 'antd'
 
 export default Progress;

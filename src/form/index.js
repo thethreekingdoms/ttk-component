@@ -1,6 +1,3 @@
-import Form from './Form';
-import FormItem from './FormItem';
-
-Form.Item = FormItem;
+import { Form } from 'antd'
 
 export default Form;

@@ -1,6 +1,2 @@
-import Breadcrumb from './Breadcrumb';
-import BreadcrumbItem from './BreadcrumbItem';
-
-Breadcrumb.Item = BreadcrumbItem;
-
+import { Breadcrumb } from 'antd'
 export default Breadcrumb;

@@ -1,3 +1,3 @@
-import Message from './Message';
+import { message } from 'antd'
 
-export default Message;
+export default message;
