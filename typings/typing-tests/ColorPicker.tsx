@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { ColorPicker } from 'element-react'
-import { ColorPicker as ColorPickerNext } from 'element-react/next'
+import { ColorPicker } from 'TTK-Component'
+import { ColorPicker as ColorPickerNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   format: 'hsl' | 'hsv' | 'hex' | 'rgb'

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Transfer } from 'element-react'
-import { Transfer as TransferNext } from 'element-react/next'
+import { Transfer } from 'TTK-Component'
+import { Transfer as TransferNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   state = {

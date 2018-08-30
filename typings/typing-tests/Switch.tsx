@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Switch } from 'element-react'
-import { Switch as SwitchNext } from 'element-react/next'
+import { Switch } from 'TTK-Component'
+import { Switch as SwitchNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onChange = (value) => { }

@@ -1,5 +1,5 @@
-import { Message } from 'element-react'
-import { Message as MessageNext } from 'element-react/next'
+import { Message } from 'TTK-Component'
+import { Message as MessageNext } from 'TTK-Component/next'
 
 Message('message')
 Message('message', 'success')

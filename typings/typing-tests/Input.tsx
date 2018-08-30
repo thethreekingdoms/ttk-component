@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Input } from 'element-react'
-import { Input as InputNext } from 'element-react/next'
+import { Input } from 'TTK-Component'
+import { Input as InputNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onClose = () => { }

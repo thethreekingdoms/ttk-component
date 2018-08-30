@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { TimeSelect, TimePicker, TimeRangePicker } from 'element-react'
+import { TimeSelect, TimePicker, TimeRangePicker } from 'TTK-Component'
 
 class Component extends React.Component<{}, {}> {
   state = {

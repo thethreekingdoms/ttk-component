@@ -118,7 +118,7 @@ render() {
 单独引入 `Message`：
 
 ```
-import { Message } from 'element-react';
+import { Message } from 'TTK-Component';
 ```
 
 此时调用方法为 `Message(options)`。我们也为每个 type 定义了各自的方法，如 `Message.success(options)`。

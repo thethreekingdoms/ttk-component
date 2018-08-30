@@ -110,7 +110,7 @@ open() {
 单独引入 Notification：
 
 ```javascript
-import { Notification } from 'element-react';
+import { Notification } from 'TTK-Component';
 ```
 
 此时调用方法为 `Notification(options)`。我们也为每个 type 定义了各自的方法，如 `Notification.success(options)`。

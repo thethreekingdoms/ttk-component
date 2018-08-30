@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Menu } from 'element-react'
-import { Menu as MenuNext } from 'element-react/next'
+import { Menu } from 'TTK-Component'
+import { Menu as MenuNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onSelect = (index, indexPath) => { }

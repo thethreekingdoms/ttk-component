@@ -2,7 +2,7 @@
 
 /// <reference types="react" />
 
-declare module "element-react" {
+declare module "TTK-Component" {
   export import i18n = ElementReact.i18n
   export import Alert = ElementReact.Alert
   export import Button = ElementReact.Button
@@ -50,7 +50,7 @@ declare module "element-react" {
   export import Transfer = ElementReact.Transfer
 }
 
-declare module "element-react/next" {
+declare module "TTK-Component/next" {
   export import i18n = ElementReact.i18n
   export import Alert = ElementReact.Alert
   export import Button = ElementReact.Button
@@ -158,7 +158,7 @@ declare namespace ElementReact {
     offset?: number | string
     pull?: number | string
     push?: number | string
-    // the next props are not on https://eleme.github.io/element-react/#/zh-CN/layout
+    // the next props are not on https://eleme.github.io/TTK-Component/#/zh-CN/layout
     xs?: number | string | Object
     sm?: number | string | Object
     md?: number | string | Object
@@ -1001,123 +1001,123 @@ declare namespace ElementReactLibs {
   class DatePickerBaseComponet<P, S> extends React.Component<P, S> { }
 }
 
-declare module "element-react/src/locale/lang/bg" {
+declare module "TTK-Component/src/locale/lang/bg" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/ca" {
+declare module "TTK-Component/src/locale/lang/ca" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/cz" {
+declare module "TTK-Component/src/locale/lang/cz" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/da" {
+declare module "TTK-Component/src/locale/lang/da" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/de" {
+declare module "TTK-Component/src/locale/lang/de" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/el" {
+declare module "TTK-Component/src/locale/lang/el" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/en" {
+declare module "TTK-Component/src/locale/lang/en" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/es" {
+declare module "TTK-Component/src/locale/lang/es" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/fa" {
+declare module "TTK-Component/src/locale/lang/fa" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/fi" {
+declare module "TTK-Component/src/locale/lang/fi" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/fr" {
+declare module "TTK-Component/src/locale/lang/fr" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/id" {
+declare module "TTK-Component/src/locale/lang/id" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/it" {
+declare module "TTK-Component/src/locale/lang/it" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/ja" {
+declare module "TTK-Component/src/locale/lang/ja" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/ko" {
+declare module "TTK-Component/src/locale/lang/ko" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/nb-NO" {
+declare module "TTK-Component/src/locale/lang/nb-NO" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/nl" {
+declare module "TTK-Component/src/locale/lang/nl" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/pl" {
+declare module "TTK-Component/src/locale/lang/pl" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/pt-br" {
+declare module "TTK-Component/src/locale/lang/pt-br" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/pt" {
+declare module "TTK-Component/src/locale/lang/pt" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/ru-RU" {
+declare module "TTK-Component/src/locale/lang/ru-RU" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/sk" {
+declare module "TTK-Component/src/locale/lang/sk" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/sv-SE" {
+declare module "TTK-Component/src/locale/lang/sv-SE" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/th" {
+declare module "TTK-Component/src/locale/lang/th" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/tk" {
+declare module "TTK-Component/src/locale/lang/tk" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/tr-TR" {
+declare module "TTK-Component/src/locale/lang/tr-TR" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/ua" {
+declare module "TTK-Component/src/locale/lang/ua" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/vi" {
+declare module "TTK-Component/src/locale/lang/vi" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/zh-CN" {
+declare module "TTK-Component/src/locale/lang/zh-CN" {
   const lang: ElementReact.I18nLang
   export default lang
 }
-declare module "element-react/src/locale/lang/zh-TW" {
+declare module "TTK-Component/src/locale/lang/zh-TW" {
   const lang: ElementReact.I18nLang
   export default lang
 }

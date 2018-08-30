@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Tag } from 'element-react'
-import { Tag as TagNext } from 'element-react/next'
+import { Tag } from 'TTK-Component'
+import { Tag as TagNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onClose = () => { }

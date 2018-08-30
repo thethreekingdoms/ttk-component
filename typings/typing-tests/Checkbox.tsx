@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Checkbox } from 'element-react'
-import { Checkbox as CheckboxNext } from 'element-react/next'
+import { Checkbox } from 'TTK-Component'
+import { Checkbox as CheckboxNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   state = {

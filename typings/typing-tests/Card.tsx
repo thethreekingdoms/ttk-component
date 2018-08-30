@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Card, Button } from 'element-react'
-import { Card as CardNext } from 'element-react/next'
+import { Card, Button } from 'TTK-Component'
+import { Card as CardNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   render() {

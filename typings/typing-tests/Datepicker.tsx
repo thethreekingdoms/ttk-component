@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { DatePicker, DateRangePicker } from 'element-react'
+import { DatePicker, DateRangePicker } from 'TTK-Component'
 
 class Component extends React.Component<{}, {}> {
   state = {

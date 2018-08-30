@@ -4,7 +4,7 @@
 Installing with npm is recommended and it works seamlessly with `webpack`.
 
 ```shell
-npm i element-react --save
+npm i TTK-Component --save
 ```
 ### Theme
 Before the building, you need a style theme, here we recommend you to pick up `element-theme-default`.
@@ -18,7 +18,7 @@ npm install element-theme-default --save
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'element-react';
+import { Button } from 'TTK-Component';
 
 import 'element-theme-default';
 
