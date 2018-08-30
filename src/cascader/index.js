@@ -1,3 +1,3 @@
-import Cascader from './Cascader';
+import {Cascader} from 'antd';
 
 export default Cascader;

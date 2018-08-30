@@ -1,7 +1,3 @@
-import Row from './Row';
-import Col from './Col';
+import { Layout  } from 'antd'
 
-export default {
-  Row,
-  Col
-}
+export default Layout

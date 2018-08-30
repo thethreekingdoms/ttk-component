@@ -1,6 +1,3 @@
-import Carousel from './Carousel';
-import CarouselItem from './CarouselItem';
-
-Carousel.Item = CarouselItem;
+import { Carousel } from 'antd'
 
 export default Carousel;

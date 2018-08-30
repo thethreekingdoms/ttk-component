@@ -10,7 +10,7 @@ function TableComponent(props) {
 		'mk-table-loading': props.loading != undefined,
 		'emptyShowScroll': props.emptyShowScroll
 	})
-	if( props.lazyTable && props.dataSource && props.dataSource.length>0 ) {
+	if (props.lazyTable && props.dataSource && props.dataSource.length > 0) {
 		return <LazyTable {...props} className={className} />
 	}
 	let allowColResize = props.allowColResize === true ? true : false

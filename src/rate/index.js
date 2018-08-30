@@ -1,3 +1,3 @@
-import Rate from './Rate';
+import {Rate} from 'antd';
 
 export default Rate;

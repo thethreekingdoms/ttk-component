@@ -1,6 +1,3 @@
-import Collapse from './Collapse';
-import CollapseItem from './CollapseItem';
-
-Collapse.Item = CollapseItem;
+import { Collapse } from 'antd'
 
 export default Collapse;

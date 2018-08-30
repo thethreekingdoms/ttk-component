@@ -1,10 +1,3 @@
-import Menu from './Menu';
-import SubMenu from './SubMenu';
-import MenuItem from './MenuItem';
-import MenuItemGroup from './MenuItemGroup';
-
-Menu.SubMenu = SubMenu;
-Menu.Item = MenuItem;
-Menu.ItemGroup = MenuItemGroup;
+import { Menu } from 'antd'
 
 export default Menu;

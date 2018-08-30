@@ -1,8 +1,3 @@
-import Checkbox from './CheckBox';
-import CheckboxGroup from './CheckBoxGroup';
-import CheckboxButton from './CheckBoxButton';
-
-Checkbox.Group = CheckboxGroup;
-Checkbox.Button = CheckboxButton;
+import { Checkbox } from 'antd'
 
 export default Checkbox;

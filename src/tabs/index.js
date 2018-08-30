@@ -1,6 +1,3 @@
-import Tabs from './Tabs'
-import TabPane from './TabPane'
-
-Tabs.Pane = TabPane;
+import {Tabs} from 'antd'
 
 export default Tabs;
