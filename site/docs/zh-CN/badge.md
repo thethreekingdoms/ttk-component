@@ -1,57 +1,25 @@
-## Badge 标记
+## Badge徽标数
+图标右上角的圆形徽标数字。
 
-出现在按钮、图标旁的数字或状态标记。
+## 何时使用
 
-### 基础用法
-展示新消息数量。
+一般出现在通知图标或头像的右上角，用于显示需要处理的消息条数，通过醒目视觉形式吸引用户处理。
 
-:::demo 定义`value`属性，它接受`Number`或者`String`。
+## 代码演示
 
+### 基本
+简单的徽章展示，当 count 为 0 时，默认不显示，但是可以使用 showZero 修改为显示。
+
+:::demo
 ```js
 render() {
   return (
     <div>
-      <Badge value={ 12 }>
-        <Button size="small">评论</Button>
+      <Badge count={5}>
+        <a href="#" className="head-example" />
       </Badge>
-      <Badge value={ 3 }>
-        <Button size="small">回复</Button>
-      </Badge>
-      <Dropdown trigger="click" menu={(
-        <Dropdown.Menu>
-          <Dropdown.Item className="clearfix">
-            <span>评论</span><Badge className="mark" value={ 12 } />
-          </Dropdown.Item>
-          <Dropdown.Item className="clearfix">
-            <span>回复</span><Badge className="mark" value={ 3 } />
-          </Dropdown.Item>
-        </Dropdown.Menu>
-        )}
-      >
-        <span className="el-dropdown-link">
-          点我查看<i className="el-icon-caret-bottom el-icon--right"></i>
-        </span>
-      </Dropdown>
-    </div>
-  )
-}
-```
-:::
-
-### 最大值
-可自定义最大值。
-
-:::demo 由`max`属性定义，它接受一个`Number`，需要注意的是，只有当`value`为`Number`时，它才会生效。
-
-```js
-render() {
-  return (
-    <div>
-      <Badge value={ 200 } max={ 99 }>
-        <Button size="small">评论</Button>
-      </Badge>
-      <Badge value={ 100 } max={ 10 }>
-        <Button size="small">回复</Button>
+      <Badge count={0} showZero>
+        <a href="#" className="head-example" />
       </Badge>
     </div>
   )
@@ -59,20 +27,48 @@ render() {
 ```
 :::
 
-### 自定义内容
-可以显示数字以外的文本内容。
 
-:::demo 定义`value`为`String`类型是时可以用于显示自定义文本。
+### 独立使用
+不包裹任何元素即是独立使用，可自定样式展现。
 
+在右上角的 badge 则限定为红色。
+
+:::demo
 ```js
 render() {
   return (
     <div>
-      <Badge value={ 'new' }>
-        <Button size="small">评论</Button>
+      <Badge count={25} />
+      <Badge count={4} style={{ backgroundColor: '#fff', color: '#999', boxShadow: '0 0 0 1px #d9d9d9 inset' }} />
+      <Badge count={109} style={{ backgroundColor: '#52c41a' }} />
+    </div>
+  )
+}
+```
+:::
+
+
+
+### 封顶数字
+超过 overflowCount 的会显示为 ${overflowCount}+，默认的 overflowCount 为 99。
+
+
+:::demo
+```js
+render() {
+  return (
+    <div>
+      <Badge count={99}>
+        <a href="#" className="head-example" />
       </Badge>
-      <Badge value={ 'hot' }>
-        <Button size="small">回复</Button>
+      <Badge count={100}>
+        <a href="#" className="head-example" />
+      </Badge>
+      <Badge count={99} overflowCount={10}>
+        <a href="#" className="head-example" />
+      </Badge>
+      <Badge count={1000} overflowCount={999}>
+        <a href="#" className="head-example" />
       </Badge>
     </div>
   )
@@ -80,20 +76,24 @@ render() {
 ```
 :::
 
-### 小红点
-以红点的形式标注需要关注的内容。
 
-:::demo 除了数字外，设置`isDot`属性，它接受一个`Boolean`。
 
+### 讨嫌的小红点
+没有具体的数字。
+
+:::demo
 ```js
 render() {
   return (
     <div>
-      <Badge isDot>
-        数据查询
+      <Badge dot>
+        <Icon type="notification" />
       </Badge>
-      <Badge isDot>
-        <Button className="share-button" icon="share" type="primary"></Button>
+      <Badge count={0} dot>
+        <Icon type="notification" />
+      </Badge>
+      <Badge dot>
+        <a href="#">Link something</a>
       </Badge>
     </div>
   )
@@ -101,9 +101,145 @@ render() {
 ```
 :::
 
-### Attributes
-| 参数          | 说明            | 类型            | 可选值                 | 默认值   |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| value          | 显示值      | string, number          |          —             |    —     |
-| max          |  最大值，超过最大值会显示 '{max}+'，要求 value 是 Number 类型    | number  |         —              |     —    |
-| isDot       | 小圆点    | boolean  |  —  |  false |
+
+### 可点击
+
+用 a 标签进行包裹即可。
+
+
+:::demo
+```js
+render() {
+  return (
+    <a href="#">
+      <Badge count={5}>
+        <span className="head-example" />
+      </Badge>
+    </a>
+  )
+}
+```
+:::
+
+
+
+### 动态
+展示动态变化的效果。
+
+
+:::demo
+```js
+
+constructor() {
+  super()
+  this.state = {
+    count: 5,
+    show: true,
+  }
+}
+
+increase() {
+  const count = this.state.count + 1;
+  this.setState({ count });
+}
+
+decline() {
+  let count = this.state.count - 1;
+  if (count < 0) {
+    count = 0;
+  }
+  this.setState({ count });
+}
+
+onChange(show){
+  this.setState({ show });
+}
+
+render() {
+  const ButtonGroup = Button.Group;
+
+  return (
+    <div>
+      <div>
+        <Badge count={this.state.count}>
+          <a href="#" className="head-example" />
+        </Badge>
+        <ButtonGroup>
+          <Button onClick={this.decline.bind(this)}>
+            <Icon type="minus" />
+          </Button>
+          <Button onClick={this.increase.bind(this)}>
+            <Icon type="plus" />
+          </Button>
+        </ButtonGroup>
+      </div>
+      <div style={{ marginTop: 10 }}>
+        <Badge dot={this.state.show}>
+          <a href="#" className="head-example" />
+        </Badge>
+        <Switch onChange={this.onChange.bind(this)} checked={this.state.show} />
+      </div>
+    </div>
+  );
+}
+```
+:::
+
+
+### 状态点
+
+用于表示状态的小圆点。
+
+
+
+:::demo
+```js
+render() {
+  return (
+    <div>
+      <Badge status="success" />
+      <Badge status="error" />
+      <Badge status="default" />
+      <Badge status="processing" />
+      <Badge status="warning" />
+      <br />
+      <Badge status="success" text="Success" />
+      <br />
+      <Badge status="error" text="Error" />
+      <br />
+      <Badge status="default" text="Default" />
+      <br />
+      <Badge status="processing" text="Processing" />
+      <br />
+      <Badge status="warning" text="Warning" />
+    </div>
+  )
+}
+```
+:::
+
+
+
+## API
+
+```
+<Badge count={5}>
+  <a href="#" className="head-example" />
+</Badge>
+```
+
+
+```
+<Badge count={5} />
+```
+
+| 参数        | 说明          | 类型          |默认值         |
+|-------------|--------------|---------------|---------------|
+|count        |展示的数字，大于 overflowCount 时显示为 ${overflowCount}+，为 0 时隐藏 | number/ReactNode | - |
+|dot	|不展示数字，只有一个小红点|	boolean|	false|
+|offset|	设置状态点的位置偏移，格式为 [x, y]|	[number, number]|	-|
+|overflowCount|	展示封顶的数字值|	number|	99|
+|showZero	|当数值为 0 时，是否展示 Badge|	boolean	|false|
+|status	|设置 Badge 为状态点| Enum{ 'success', 'processing, 'default', 'error', 'warning' } | ‘’|
+|text	|在设置了 status 的前提下有效，设置状态点的文本|	string|	''|
+|title	|设置鼠标放在状态点上时显示的文字	|string	|count|

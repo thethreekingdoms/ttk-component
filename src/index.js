@@ -5,6 +5,7 @@ export { default as Affix } from './affix'
 export { default as Alert } from './alert'
 export { default as Anchor } from './anchor'
 export { default as AutoComplete } from './auto-complete'
+export { default as BackTop } from './backTop'
 export { default as Badge } from './badge'
 export { default as Breadcrumb } from './breadcrumb'
 export { default as Button } from './button';

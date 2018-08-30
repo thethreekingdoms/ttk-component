@@ -55,6 +55,7 @@ module.exports = {
     'notification1': '5555',
     'affix': 'affix 固钉',
     'Anchor': 'Anchor锚点',
+    'BackTop': 'BackTop回到顶部',
     'activeLabelSelect': 'activeLabelSelect 多类型选择'
   },
   misc: {

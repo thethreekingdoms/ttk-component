@@ -67,6 +67,7 @@ export default {
     },
     'Others': {
       'Anchor': require('./anchor'),
+      'BackTop': require('./BackTop'),
       'dialog': require('./dialog'),
       'tooltip': require('./tooltip'),
       'popover': require('./popover'),
