@@ -1,5 +1,6 @@
 module.exports = {
   page: {
+    'AutoComplete': 'AutoComplete自动完成',
     'quick-start': '快速上手',
     'i18n': '国际化',
     'custom-theme': '自定义主题',
@@ -52,6 +53,8 @@ module.exports = {
     'messag1e': '3333',
     'message-box1': '4444',
     'notification1': '5555',
+    'affix': 'affix 固钉',
+    'Anchor': 'Anchor锚点',
     'activeLabelSelect': 'activeLabelSelect 多类型选择'
   },
   misc: {

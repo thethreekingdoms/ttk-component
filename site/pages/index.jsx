@@ -13,6 +13,7 @@ export default {
       'button': require('./button')
     },
     'Form': {
+      'AutoComplete': require('./auto-complete'),
       'radio': require('./radio'),
       'checkbox': require('./checkbox'),
       'input': require('./input'),
@@ -48,6 +49,7 @@ export default {
     'Nav': {
       'menu': require('./menu'),
       'tabs': require('./tabs'),
+      'affix': require('./affix'),
       'breadcrumb': require('./breadcrumb'),
       'dropdown': require('./dropdown'),
       'steps': require('./steps')
@@ -64,6 +66,7 @@ export default {
       'activeLabelSelect': require('./activelabelselect')
     },
     'Others': {
+      'Anchor': require('./anchor'),
       'dialog': require('./dialog'),
       'tooltip': require('./tooltip'),
       'popover': require('./popover'),
