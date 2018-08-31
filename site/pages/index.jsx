@@ -29,7 +29,8 @@ export default {
       'rate': require('./rate'),
       'color-picker': require('./color-picker'),
       'transfer': require('./transfer'),
-      'form': require('./form')
+      'form': require('./form'),
+      'attachment': require('./attachment')
     },
     'Data': {
       'table': require('./table'),

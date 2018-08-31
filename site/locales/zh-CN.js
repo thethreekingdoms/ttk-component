@@ -56,7 +56,8 @@ module.exports = {
     'affix': 'affix 固钉',
     'Anchor': 'Anchor锚点',
     'BackTop': 'BackTop回到顶部',
-    'activeLabelSelect': 'activeLabelSelect 多类型选择'
+    'activeLabelSelect': 'activeLabelSelect 多类型选择',
+    'attachment': 'attachment 上传'
   },
   misc: {
     'guide': '指南',
