@@ -167,7 +167,7 @@ export default class App extends React.Component {
               </li>
             </ul>
           </nav>
-          <div className="content">
+          <div className={`content ${this.state.page}`}>
             {this.getComponent(this.state.page)}
             <ScrollToTop showUnder={210}>
               <div className="page-component-up">
