@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Tabs } from 'element-react'
-import { Tabs as TabsNext } from 'element-react/next'
+import { Tabs } from 'TTK-Component'
+import { Tabs as TabsNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onTabClick = (tab) => { }

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Collapse } from 'element-react'
-import { Collapse as CollapseNext } from 'element-react/next'
+import { Collapse } from 'TTK-Component'
+import { Collapse as CollapseNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onChange = (activeNames) => { }

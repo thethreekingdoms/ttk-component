@@ -109,13 +109,13 @@ export default class App extends React.Component {
             </h1>
             <ul className="nav">
               <li className="nav-item">
-                <a href={`http:///#/${this.state.locale}/guide/design`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
+                <a href={`https://github.com/thethreekingdoms/`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
               </li>
               <li className="nav-item">
                 <a className="active">{this.getLocale('misc.component')}</a>
               </li>
               <li className="nav-item">
-                <a href={`http:///#/${this.state.locale}/resource`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.resource')}</a>
+                <a href={`https://github.com/thethreekingdoms/ttk-tools`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.resource')}</a>
               </li>
               <li className="nav-item">
                 <span className={classnames('nav-lang', { active: this.state.locale === 'zh-CN' })} onClick={this.setLocale.bind(this, 'zh-CN')}>中文</span>
@@ -167,7 +167,7 @@ export default class App extends React.Component {
               </li>
             </ul>
           </nav>
-          <div className="content">
+          <div className={`content ${this.state.page}`}>
             {this.getComponent(this.state.page)}
             <ScrollToTop showUnder={210}>
               <div className="page-component-up">
@@ -179,13 +179,13 @@ export default class App extends React.Component {
         <footer className="footer">
           <div className="container">
             <div className="footer-main">
-              <p className="footer-main-title">Element-React</p>
+              <p className="footer-main-title">TTK-Component</p>
               <a href="" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.feedback')}</a>
               <a href="" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.contribution')}</a>
-              <a href={`http://io/#/${this.state.locale}/component/${this.state.page}`} target="_blank" rel="noopener noreferrer" className="footer-main-link">Element</a>
+              <a href={`http://io/#/${this.state.locale}/component/${this.state.page}`} target="_blank" rel="noopener noreferrer" className="footer-main-link">关于我们</a>
             </div>
             <div className="footer-social">
-              <a href="//github.com/eleme/element-react" target="_blank" rel="noopener noreferrer">
+              <a href="//github.com/eleme/TTK-Component" target="_blank" rel="noopener noreferrer">
                 <img src={require('./assets/github.png')} />
               </a>
             </div>

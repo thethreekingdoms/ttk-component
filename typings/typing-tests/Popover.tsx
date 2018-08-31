@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Popover } from 'element-react'
-import { Popover as PopoverNext } from 'element-react/next'
+import { Popover } from 'TTK-Component'
+import { Popover as PopoverNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   render() {

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Carousel } from 'element-react'
-import { Carousel as CarouselNext } from 'element-react/next'
+import { Carousel } from 'TTK-Component'
+import { Carousel as CarouselNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onChange = (current, prev) => { }

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Cascader } from 'element-react'
-import { Cascader as CascaderNext } from 'element-react/next'
+import { Cascader } from 'TTK-Component'
+import { Cascader as CascaderNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   state = {

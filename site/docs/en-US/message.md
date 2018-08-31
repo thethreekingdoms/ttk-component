@@ -117,7 +117,7 @@ render() {
 Import `Message`:
 
 ```javascript
-import { Message } from 'element-react';
+import { Message } from 'TTK-Component';
 ```
 
 In this case you should call `Message(options)`. We have also registered methods for different types, e.g. `Message.success(options)`.

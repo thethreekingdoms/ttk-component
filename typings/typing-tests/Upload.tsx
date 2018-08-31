@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Upload } from 'element-react'
-import { Upload as UploadNext } from 'element-react/next'
+import { Upload } from 'TTK-Component'
+import { Upload as UploadNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   state = {

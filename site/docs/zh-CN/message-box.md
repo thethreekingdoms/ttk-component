@@ -108,7 +108,7 @@ onClick() {
 单独引入 `MessageBox`:
 
 ```js
-import { MessageBox } from 'element-react';
+import { MessageBox } from 'TTK-Component';
 ```
 
 对应于上述四个全局方法的调用方法依次为：MessageBox, MessageBox.alert, MessageBox.confirm 和 MessageBox.prompt。

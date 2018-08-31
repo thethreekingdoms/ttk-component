@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Progress } from 'element-react'
-import { Progress as ProgressNext } from 'element-react/next'
+import { Progress } from 'TTK-Component'
+import { Progress as ProgressNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   render() {

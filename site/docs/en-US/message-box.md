@@ -115,7 +115,7 @@ onClick() {
 Import `MessageBox`:
 
 ```javascript
-import { MessageBox } from 'element-react';
+import { MessageBox } from 'TTK-Component';
 ```
 
 The corresponding methods are: `MessageBox`, `MessageBox.alert`, `MessageBox.confirm` and `MessageBox.prompt`.

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Form } from 'element-react'
-import { Form as FormNext } from 'element-react/next'
+import { Form } from 'TTK-Component'
+import { Form as FormNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   state = {

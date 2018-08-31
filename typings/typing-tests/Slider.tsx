@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Slider } from 'element-react'
-import { Slider as SliderNext } from 'element-react/next'
+import { Slider } from 'TTK-Component'
+import { Slider as SliderNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   formatTooltip = () => { }

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { AutoComplete, Icon } from 'element-react'
-import { AutoComplete as AutoCompleteNext } from 'element-react/next'
+import { AutoComplete, Icon } from 'TTK-Component'
+import { AutoComplete as AutoCompleteNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   fetchSuggestions = (queryString, cb) => { }

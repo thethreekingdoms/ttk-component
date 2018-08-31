@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Rate } from 'element-react'
-import { Rate as RateNext } from 'element-react/next'
+import { Rate } from 'TTK-Component'
+import { Rate as RateNext } from 'TTK-Component/next'
 
 class Component extends React.Component<{}, {}> {
   onChange = () => { }

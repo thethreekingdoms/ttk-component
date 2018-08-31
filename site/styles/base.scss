@@ -40,12 +40,12 @@ body {
 
       &:after {
         position: absolute;
-        top: -7px;
-        right: -50px;
-        content: 'React';
-        font-size: 13px;
-        font-weight: bold;
-        text-transform: uppercase;
+        top: -11px;
+        right: -68px;
+        content: 'Component';
+        color: #fff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10px;
       }
 
       a {
@@ -121,7 +121,7 @@ body {
   }
 
   .main {
-    padding-top: 60px;
+    padding-top: 20px;
     padding-bottom: 95px;
   }
 
