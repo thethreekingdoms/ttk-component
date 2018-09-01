@@ -16,6 +16,7 @@ export { default as Cascader } from './cascader';
 export { default as Checkbox } from './checkbox';
 export { default as Col } from './col';
 export { default as Collapse } from './collapse';
+export { default as ColumnsSetting } from './columnsSetting';
 export { default as DatePicker } from './date-picker';
 export { default as Dropdown } from './dropdown';
 export { default as Form } from './form';

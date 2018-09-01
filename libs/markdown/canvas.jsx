@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import marked from 'marked'
 import { transform } from 'babel-standalone'
+import moment from 'moment'
 
 import Editor from '../editor'
 
@@ -32,8 +33,8 @@ export default class Canvas extends React.Component {
 
   renderSource(value) {
     import('../../src').then(Element => {
-      const args = ['context', 'React', 'ReactDOM']
-      const argv = [this, React, ReactDOM]
+      const args = ['context', 'React', 'ReactDOM', 'moment']
+      const argv = [this, React, ReactDOM, moment]
 
       for (const key in Element) {
         args.push(key)

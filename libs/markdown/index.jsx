@@ -5,6 +5,7 @@ import prism from 'prismjs';
 
 import Canvas from './canvas';
 
+
 export default class Markdown extends React.Component {
   constructor(props) {
     super(props);
