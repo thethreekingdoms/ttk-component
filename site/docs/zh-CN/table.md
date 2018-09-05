@@ -12,22 +12,19 @@ constructor(props) {
   super(props);
 
   this.state = {
-    columns: [
-      {
-        label: "日期",
-        prop: "date",
-        width: 180
-      },
-      {
-        label: "姓名",
-        prop: "name",
-        width: 180
-      },
-      {
-        label: "地址",
-        prop: "address"
-      }
-    ],
+    columns: [{
+      title: '日期',
+      dataIndex: 'date',
+      key: 'date',
+    }, {
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    }, {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    }],
     data: [{
       date: '2016-05-02',
       name: '王小虎',
@@ -70,7 +67,7 @@ render() {
       style={{width: '100%'}}
       columns={this.state.columns}
       maxHeight={200}
-      data={this.state.data}
+      dataSource={this.state.data}
     />
   )
 }

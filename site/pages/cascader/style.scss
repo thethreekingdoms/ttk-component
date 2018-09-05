@@ -1,7 +1,14 @@
 .content.cascader {
-  ul > li {
-    list-style-type: circle;
-    margin-left: 20px;
-    padding-left: 4px;
+  .basicCascader{
+    .mk-cascader{
+      width:300px;
+    }
+  }
+  blockquote{
+    font-size: 90%;
+    color: #697b8c;
+    border-left: 4px solid #ebedf0;
+    padding-left: 0.8em;
+    margin: 0;
   }
 }
