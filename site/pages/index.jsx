@@ -45,7 +45,6 @@ export default {
       'alert': require('./alert'),
       'loading': require('./loading'),
       'message': require('./message'),
-      'message-box': require('./message-box'),
       'notification': require('./notification')
     },
     'Nav': {
@@ -63,7 +62,6 @@ export default {
       'alert1': require('./alert'),
       'loading1': require('./loading'),
       'messag1e': require('./message'),
-      'message-box1': require('./message-box'),
       'notification1': require('./notification'),
       'activeLabelSelect': require('./activelabelselect')
     },
