@@ -14,6 +14,8 @@ function promiseWrapper(fun) {
 
 export default {
     config: notification.config,
+    close: notification.close,
+    destroy: notification.destroy,
 	open: promiseWrapper(notification.open),
 	success: promiseWrapper(notification.success),
 	error: promiseWrapper(notification.error),
