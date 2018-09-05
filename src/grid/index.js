@@ -1,8 +1,9 @@
-import React from 'react'
-import { Col, Row } from 'antd'
+import RowComponent from './row'
+import ColComponent from './col'
 
 let GridComponent = {}
-GridComponent.Row = Row
-GridComponent.Col = Col
+
+GridComponent.Row = RowComponent
+GridComponent.Col = ColComponent
 
 export default GridComponent
