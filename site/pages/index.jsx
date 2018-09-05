@@ -38,7 +38,8 @@ export default {
       'progress': require('./progress'),
       'tree': require('./tree'),
       'pagination': require('./pagination'),
-      'badge': require('./badge')
+      'badge': require('./badge'),
+      'list': require('./list')
     },
     'Notice': {
       'alert': require('./alert'),

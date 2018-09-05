@@ -23,6 +23,7 @@ export { default as Form } from './form';
 export { default as Icon } from './icon';
 export { default as Input } from './input';
 export { default as Layout } from './layout';
+export { default as List } from './list';
 export { default as LocaleProvider } from './LocaleProvider';
 export { default as Menu } from './menu';
 export { default as message } from './message';
