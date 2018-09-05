@@ -1,70 +1,231 @@
 ## Progress 进度条
 
-用于展示操作进度，告知用户当前状态和预期。
+展示操作的当前进度。
 
-### 线形进度条 — 百分比外显
+##代码演示
 
-:::demo Progress 组件设置`percentage`属性即可，表示进度条对应的百分比，**必填**，必须在 0-100。
+### 进度条
 
+标准的进度条。
+
+:::demo
 ```js
 render() {
-  return (
+  return(
     <div>
-      <Progress percentage={0} />
-      <Progress percentage={70} />
-      <Progress percentage={100} status="success" />
-      <Progress percentage={50} status="exception" />
+      <Progress percent={30} />
+      <Progress percent={50} status="active" />
+      <Progress percent={70} status="exception" />
+      <Progress percent={100} />
+      <Progress percent={50} showInfo={false} />
     </div>
   )
 }
 ```
 :::
 
-### 线形进度条 — 百分比内显
 
-百分比不占用额外控件，适用于文件上传等场景。
+### 进度圈
 
-:::demo Progress 组件可通过 `strokeWidth` 属性更改进度条的高度，并可通过 `textInside` 属性来将进度条描述置于进度条内部。
+圈形的进度。
 
+:::demo
 ```js
 render() {
-  return (
+  return(
     <div>
-      <Progress strokeWidth={18} percentage={0} textInside />
-      <Progress strokeWidth={18} percentage={70} textInside />
-      <Progress strokeWidth={18} percentage={100} status="success" textInside />
-      <Progress strokeWidth={18} percentage={50} status="exception" textInside />
+      <Progress type="circle" percent={75} />
+      <Progress type="circle" percent={70} status="exception" />
+      <Progress type="circle" percent={100} />
     </div>
   )
 }
 ```
 :::
 
-### 环形进度条
 
-:::demo Progress 组件可通过 `type` 属性来指定使用环形进度条，在环形进度条中，还可以通过 `width` 属性来设置其大小。
+### 小型进度条
+适合放在较狭窄的区域内。
 
+:::demo
 ```js
 render() {
-  return (
-    <div>
-      <Progress type="circle" percentage={0} />
-      <Progress type="circle" percentage={25} />
-      <Progress type="circle" percentage={100} status="success" />
-      <Progress type="circle" percentage={50} status="exception" />
+  return(
+    <div style={{ width: 170 }}>
+      <Progress percent={30} size="small" />
+      <Progress percent={50} size="small" status="active" />
+      <Progress percent={70} size="small" status="exception" />
+      <Progress percent={100} size="small" />
     </div>
   )
 }
 ```
 :::
 
-### Attributes
-| 参数          | 说明            | 类型            | 可选值                 | 默认值   |
-|-------------  |---------------- |---------------- |---------------------- |-------- |
-| **percentage** | **百分比（必填）**   | number          |     0-100          |     0    |
-| type          | 进度条类型           | string         | line/circle | line |
-| strokeWidth  | 进度条的宽度，单位 px | number          | — | 6 |
-| textInside  | 进度条显示文字内置在进度条内（只在 type=line 时可用） | Boolean | — | false |
-| status  | 进度条当前状态 | string | success/exception | — |
-| width  | 环形进度条画布宽度（只在 type=circle 时可用） | number |  | 126 |
-| showText  | 是否显示进度条文字内容 | boolean | — | true |
+
+### 小型进度圈
+小一号的圈形进度。
+
+:::demo
+```js
+render() {
+  return(
+    <div>
+      <Progress type="circle" percent={30} width={80} />
+      <Progress type="circle" percent={70} width={80} status="exception" />
+      <Progress type="circle" percent={100} width={80} />
+    </div>
+  )
+}
+```
+:::
+
+
+### 进度圈动态展示
+
+会动的进度条才是好进度条。
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    percent: 0,
+  }
+}
+
+increase(){
+  let percent = this.state.percent + 10;
+  if (percent > 100) {
+    percent = 100;
+  }
+  this.setState({ percent });
+}
+
+decline() {
+  let percent = this.state.percent - 10;
+  if (percent < 0) {
+    percent = 0;
+  }
+  this.setState({ percent });
+}
+
+render() {
+  const ButtonGroup = Button.Group
+  return (
+    <div>
+      <Progress type="circle" percent={this.state.percent} />
+      <ButtonGroup>
+        <Button onClick={this.decline.bind(this)} icon="minus" />
+        <Button onClick={this.increase.bind(this)} icon="plus" />
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+:::
+
+
+### 动态展示
+会动的进度条才是好进度条。
+
+:::demo
+```js
+constructor(){
+  super()
+  this.state = {
+    percent: 0,
+  }
+}
+
+increase(){
+  let percent = this.state.percent + 10;
+  if (percent > 100) {
+    percent = 100;
+  }
+  this.setState({ percent });
+}
+
+decline(){
+  let percent = this.state.percent - 10;
+  if (percent < 0) {
+    percent = 0;
+  }
+  this.setState({ percent });
+}
+
+render() {
+  const ButtonGroup = Button.Group;
+  return (
+    <div>
+      <Progress percent={this.state.percent} />
+      <ButtonGroup>
+        <Button onClick={this.decline.bind(this)} icon="minus" />
+        <Button onClick={this.increase.bind(this)} icon="plus" />
+      </ButtonGroup>
+    </div>
+  );
+}
+```
+:::
+
+
+### 仪表盘
+通过设置 type=dashboard，可以很方便地实现仪表盘样式的进度条。
+
+:::demo
+```js
+render() {
+  return<Progress type="dashboard" percent={75} />
+}
+```
+:::
+
+### 自定义文字格式
+
+format 属性指定格式。
+
+:::demo
+```js
+render() {
+  return(
+    <div>
+      <Progress type="circle" percent={75} format={percent => `${percent} Days`} />
+      <Progress type="circle" percent={100} format={() => 'Done'} />
+    </div>
+  )
+}
+```
+:::
+
+
+### 圆角/方角边缘
+通过设定 strokeLinecap="square|round" 可以调整进度条边缘的形状。
+
+:::demo
+```js
+render() {
+  return(
+    <div>
+      <Progress strokeLinecap="square" percent={75} />
+      <Progress strokeLinecap="square" type="circle" percent={75} />
+      <Progress strokeLinecap="square" type="dashboard" percent={75} />
+    </div>
+  )
+}
+```
+:::
+
+
+### 分段进度条
+标准的进度条。
+
+:::demo
+```js
+render() {
+  return(
+      <Progress percent={60} successPercent={30} />
+  )
+}
+```
+:::
