@@ -43,3 +43,6 @@ export { default as Tooltip } from './tooltip';
 export { default as Transfer } from './transfer';
 export { default as TreeSelect } from './TreeSelect';
 export { default as Upload } from './upload';
+
+export { default as Grid } from './grid';
+export { default as Avatar } from './avatar';
