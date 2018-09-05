@@ -38,13 +38,14 @@ export default {
       'progress': require('./progress'),
       'tree': require('./tree'),
       'pagination': require('./pagination'),
-      'badge': require('./badge')
+      'badge': require('./badge'),
+      'list': require('./list')
     },
     'Notice': {
       'alert': require('./alert'),
       'loading': require('./loading'),
       'message': require('./message'),
-      'message-box': require('./message-box'),
+      'Modal': require('./modal'),
       'notification': require('./notification')
     },
     'Nav': {
@@ -62,7 +63,6 @@ export default {
       'alert1': require('./alert'),
       'loading1': require('./loading'),
       'messag1e': require('./message'),
-      'message-box1': require('./message-box'),
       'notification1': require('./notification'),
       'activeLabelSelect': require('./activelabelselect')
     },

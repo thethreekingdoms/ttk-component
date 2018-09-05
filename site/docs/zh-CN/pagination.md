@@ -1,86 +1,203 @@
 ## Pagination 分页
 
-当数据量过多时，使用分页分解数据。
+采用分页的形式分隔长列表，每次只加载一个页面。
 
-### 基础用法
+## 代码演示
 
-:::demo 设置`layout`，表示需要显示的内容，用逗号分隔，布局元素会依次显示。`prev`表示上一页，`next`为上一页，`pager`表示页码列表，除此以外还提供了`jumper`和`total`，`size`和特殊的布局符号`->`，`->`后的元素会靠右显示，`jumper`表示跳页元素，`total`表示显示页码总数，`size`用于设置每页显示的页码数量。
+### 基本
+基础分页。
+
+:::demo
 ```js
 render() {
   return (
-    <div className="first">
-      <div className="block">
-        <span className="demonstration">页数较少时的效果</span>
-        <Pagination layout="prev, pager, next" total={50}/>
-      </div>
-      <div className="block">
-        <span className="demonstration">大于 7 页时的效果</span>
-        <Pagination layout="prev, pager, next" total={1000}/>
-      </div>
-    </div>
+    <Pagination defaultCurrent={1} total={50} />
   )
 }
 ```
 :::
 
-### 小型分页
+### 更多
+更多分页。
 
-在空间有限的情况下，可以使用简单的小型分页。
-
-:::demo 只需要一个`small`属性，它接受一个`Boolean`，默认为`false`，设为`true`即可启用。
+:::demo
 ```js
 render() {
-  return <Pagination layout="prev, pager, next" total={50} small={true}/>
+  return(
+    <Pagination defaultCurrent={6} total={500} />
+  )
 }
 ```
 :::
 
-### 附加功能
+### 改变
+改变每页显示条目数。
 
-根据场景需要，可以添加其他功能模块。
-
-:::demo 此例是一个完整的用例，使用了`size-change`和`current-change`事件来处理页码大小和当前页变动时候触发的事件。`page-sizes`接受一个整型数组，数组元素为展示的选择每页显示个数的选项，`[100, 200, 300, 400]`表示四个选项，每页显示 100 个，200 个，300 个或者 400 个。
-
+:::demo
 ```js
 render() {
-  return (
-    <div className="last">
-      <div className="block">
-        <span className="demonstration">显示总数</span>
-        <Pagination layout="total, prev, pager, next" total={1000}/>
-      </div>
-      <div className="block">
-        <span className="demonstration">调整每页显示条数</span>
-        <Pagination layout="sizes, prev, pager, next" total={1000} pageSizes={[100, 200, 300, 400]} pageSize={1000}/>
-      </div>
-      <div className="block">
-        <span className="demonstration">直接前往</span>
-        <Pagination layout="prev, pager, next, jumper" total={1000} pageSize={100} currentPage={5}/>
-      </div>
-      <div className="block">
-        <span className="demonstration">完整功能</span>
-        <Pagination layout="total, sizes, prev, pager, next, jumper" total={400} pageSizes={[100, 200, 300, 400]} pageSize={100} currentPage={5}/>
-      </div>
-    </div>
+  function onShowSizeChange(current, pageSize) {
+    console.log(current, pageSize);
+  }
+  return(
+    <Pagination showSizeChanger onShowSizeChange={onShowSizeChange} defaultCurrent={3} total={500} />
   )
 }
 ```
 :::
 
 
-### Attributes
-| 参数               | 说明                                                     | 类型              | 可选值      | 默认值 |
-|--------------------|----------------------------------------------------------|-------------------|-------------|--------|
-| small | 是否使用小型分页样式 | Boolean | — | false |
-| pageSize | 每页显示条目个数 | Number | — | 10 |
-| total | 总条目数 | Number | — | - |
-| pageCount | 总页数，total 和 pageCount 设置任意一个就可以达到显示页码的功能；如果要支持 pageSizes 的更改，则需要使用 total 属性 | Number | — | - |
-| currentPage | 当前页数 | Number | — | 1 |
-| layout | 组件布局，子组件名用逗号分隔| String | `sizes`, `prev`, `pager`, `next`, `jumper`, `->`, `total` | 'prev, pager, next, jumper, ->, total'  |
-| pageSizes | 每页显示个数选择器的选项设置 | Number[] | — |  [10, 20, 30, 40, 50, 100] |
+### 跳转
 
-### Events
-| 事件名称 | 说明 | 回调参数 |
-|---------|--------|---------|
-| onSizeChange | pageSize 改变时会触发 | 每页条数`size` |
-| onCurrentChange | currentPage 改变时会触发 | 当前页`currentPage` |
+快速跳转到某一页。
+
+:::demo
+```js
+render() {
+  function onChange(pageNumber) {
+    console.log('Page: ', pageNumber);
+  }
+  return(
+    <Pagination showQuickJumper defaultCurrent={2} pageSize={10} total={500} onChange={onChange} />
+  )
+}
+```
+:::
+
+
+### 迷你
+
+迷你版本。
+
+:::demo
+```js
+render() {
+  function showTotal(total) {
+    return `Total ${total} items`;
+  }
+  return(
+    <div>
+      <Pagination size="small" total={50} />
+      <Pagination size="small" total={50} showSizeChanger showQuickJumper />
+      <Pagination size="small" total={50} showTotal={showTotal} />
+    </div>
+  )
+}
+```
+:::
+
+
+### 简洁
+
+简单的翻页。
+
+:::demo
+```js
+render() {
+  return(
+    <Pagination simple defaultCurrent={2} total={50} />
+  )
+}
+```
+:::
+
+
+### 受控
+
+受控制的页码。
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    current: 3,
+  }
+}
+
+onChange(page){
+  console.log(page);
+  this.setState({
+    current: page,
+  });
+}
+
+render() {
+  return <Pagination current={this.state.current} onChange={this.onChange.bind(this)} total={50} />;
+}
+```
+:::
+
+
+
+### 总数
+
+通过设置 showTotal 展示总共有多少数据。
+
+:::demo
+```js
+render() {
+  return(
+    <div>
+      <Pagination
+        total={85}
+        showTotal={total => `Total ${total} items`}
+        pageSize={20}
+        defaultCurrent={1}
+      />
+      <br />
+      <Pagination
+        total={85}
+        showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+        pageSize={20}
+        defaultCurrent={1}
+      />
+    </div>
+  )
+}
+```
+:::
+
+
+### 上一步和下一步
+
+修改上一步和下一步为文字链接。
+
+:::demo
+```js
+render() {
+  function itemRender(current, type, originalElement) {
+    if (type === 'prev') {
+      return <a>Previous</a>;
+    } if (type === 'next') {
+      return <a>Next</a>;
+    }
+    return originalElement;
+  }
+  return <Pagination total={500} itemRender={itemRender} />
+}
+```
+:::
+
+
+
+## api
+
+
+| 参数	|说明	|类型	|默认值 |
+|-------|----|-----|-------|
+|current	|当前页数|	number|	-|
+|defaultCurrent|	默认的当前页数|	number	|1|
+|defaultPageSize|	默认的每页条数|	number|	10|
+|hideOnSinglePage|	只有一页时是否隐藏分页器|	boolean	|false|
+|itemRender	|用于自定义页码的结构，可用于优化 SEO	|(page, type: 'page' \ 'prev' \ 'next', originalElement) => React.ReactNode|	-|
+|pageSize|	每页条数|	number|	-|
+|pageSizeOptions|	指定每页可以显示多少条|	string[]|	'10', '20', '30', '40'|
+|showQuickJumper|	是否可以快速跳转至某页|	boolean|	false|
+|showSizeChanger|	是否可以改变 pageSize|	boolean|	false|
+|showTotal|	用于显示数据总量和当前数据顺序|	Function(total, range)|	-|
+|simple	|当添加该属性时，显示为简单分页	|boolean|	-|
+|size	|当为「small」时，是小尺寸分页|	string|	""|
+|total	|数据总数|	number|	0|
+|onChange	|页码改变的回调，参数是改变后的页码及每页条数|	Function(page, pageSize)|	noop|
+|onShowSizeChange|	pageSize 变化的回调	|Function(current, size)|	noop|

@@ -1,142 +1,150 @@
-## Message 消息提示
+## Message全局提示
 
-常用于主动操作后的反馈提示。与 Notification 的区别是后者更多用于系统级通知的被动提醒。
+全局展示操作反馈信息。
 
-### 基础用法
+## 代码演示
 
-从顶部出现，3 秒后自动消失。
+### 普通提示
 
-:::demo Message 在配置上与 Notification 非常类似，所以部分 options 在此不做详尽解释，文末有 options 列表，可以结合 Notification 的文档理解它们。
+信息提醒反馈。
 
+
+:::demo
 ```js
-open() {
-  Message('这是一条消息提示');
-}
-
 render() {
-  return <Button plain={true} onClick={this.open.bind(this)}>打开消息提示</Button>
+  const info = () => {
+    message.info('This is a normal message');
+  }
+  return(
+    <Button type="primary" onClick={info}>Display normal message</Button>
+  )
 }
 ```
 :::
 
-### 不同状态
 
-用来显示「成功、警告、消息、错误」类的操作反馈。
+### 其他提示类型
 
-:::demo 当需要自定义更多属性时，Message 也可以接收一个对象为参数。比如，设置`type`字段可以定义不同的状态，默认为`info`。此时正文内容以`message`的值传入。同时，我们也为 Message 的各种 type 注册了方法，可以在不传入`type`字段的情况下像`open4`那样直接调用。
+包括成功、失败、警告。
 
+:::demo
 ```js
-open() {
-  Message({
-    message: '恭喜你，这是一条成功消息',
-    type: 'success'
-  });
-}
-
-open2() {
-  Message({
-    message: '警告哦，这是一条警告消息',
-    type: 'warning'
-  });
-}
-
-open3() {
-  Message('这是一条消息提示');
-}
-
-open4() {
-  Message.error('错了哦，这是一条错误消息');
-}
-
 render() {
+  const success = () => {
+    message.success('This is a message of success');
+  };
+
+  const error = () => {
+    message.error('This is a message of error');
+  };
+
+  const warning = () => {
+    message.warning('This is message of warning');
+  }
   return (
     <div>
-      <Button plain={true} onClick={this.open.bind(this)}>成功</Button>
-      <Button plain={true} onClick={this.open2.bind(this)}>警告</Button>
-      <Button plain={true} onClick={this.open3.bind(this)}>消息</Button>
-      <Button plain={true} onClick={this.open4.bind(this)}>错误</Button>
+      <Button onClick={success}>Success</Button>
+      <Button onClick={error}>Error</Button>
+      <Button onClick={warning}>Warning</Button>
     </div>
   )
 }
 ```
 :::
 
-### 可关闭
 
-可以添加关闭按钮。
+### 修改延时
 
-:::demo 默认的 Message 是不可以被人工关闭的，如果需要可手动关闭的 Message，可以使用`showClose`字段。此外，和 Notification 一样，Message 拥有可控的`duration`，设置`0`为不会被自动关闭，默认为 3000 毫秒。
+自定义时长 10s，默认时长为 3s。
 
+:::demo
 ```js
-open5() {
-  Message({
-    showClose: true,
-    message: '恭喜你，这是一条成功消息',
-    type: 'success'
-  });
-}
-
-open6() {
-  Message({
-    showClose: true,
-    message: '警告哦，这是一条警告消息',
-    type: 'warning'
-  });
-}
-
-open7() {
-  Message({
-    showClose: true,
-    message: '这是一条消息提示',
-    type: 'info'
-  });
-}
-
-open8() {
-  Message({
-    showClose: true,
-    message: '错了哦，这是一条错误消息',
-    type: 'error'
-  });
-}
-
 render() {
-  return (
-    <div>
-      <Button plain={true} onClick={this.open5.bind(this)}>成功</Button>
-      <Button plain={true} onClick={this.open6.bind(this)}>警告</Button>
-      <Button plain={true} onClick={this.open7.bind(this)}>消息</Button>
-      <Button plain={true} onClick={this.open8.bind(this)}>错误</Button>
-    </div>
+  const success = () => {
+    message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
+  }
+  return(
+    <Button onClick={success}>Customized display duration</Button>
   )
 }
 ```
 :::
 
-### 单独引用
 
-单独引入 `Message`：
+### 加载中
+进行全局 loading，异步自行移除。
+
+:::demo
+```js
+render() {
+  const success = () => {
+    const hide = message.loading('Action in progress..', 0);
+    // Dismiss manually and asynchronously
+    setTimeout(hide, 2500);
+  }
+  return(
+    <Button onClick={success}>Display a loading indicator</Button>
+  )
+}
+```
+:::
+
+
+## api
+
+组件提供了一些静态方法，使用方式和参数如下：
+
++ message.success(content, [duration], onClose)
++ message.error(content, [duration], onClose)
++ message.info(content, [duration], onClose)
++ message.warning(content, [duration], onClose)
++ message.warn(content, [duration], onClose)
++ message.loading(content, [duration], onClose)
+  
+
+| 参数	|说明	|类型	|默认值 |
+|-------|----|-----|-------|
+|content	|提示内容|	string、ReactNode	|-|
+|duration	|自动关闭的延时，单位秒。设为 0 时不自动关闭。|	number|	3|
+|onClose|	关闭时触发的回调函数|	Function|	-|
+
+### 组件同时提供 promise 接口。
+
++ message[level](content, [duration]).then(afterClose)
++ message[level](content, [duration], onClose).then(afterClose)
+
+其中message[level] 是组件已经提供的静态方法。then 接口返回值是 Promise
+
++ message.open(config)
+
+
+| 参数	|说明	|类型	|默认值 |
+|-------|----|-----|-------|
+|content	|提示内容|ReactNode	|-|
+|duration	|自动关闭的延时，单位秒。设为 0 时不自动关闭。|	number	|3|
+|onClose	|关闭时触发的回调函数|	Function|	-|
+|icon	|自定义图标|	ReactNode|	-|
+
+### 全局方法
+还提供了全局配置和全局销毁方法：
+
++ message.config(options)
++ message.destroy()
+
+#### message.config
 
 ```
-import { Message } from 'TTK-Component';
+message.config({
+  top: 100,
+  duration: 2,
+  maxCount: 3,
+});
 ```
 
-此时调用方法为 `Message(options)`。我们也为每个 type 定义了各自的方法，如 `Message.success(options)`。
-
-### Options
-| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| message | 消息文字 | string/ReactElement | — | — |
-| type | 主题 | string | success/warning/info/error | info |
-| iconClass | 自定义图标的类名，会覆盖 `type` | string | — | — |
-| customClass | 自定义类名 | string | — | — |
-| duration | 显示时间, 毫秒。设为 0 则不会自动关闭 | number | — | 3000 |
-| showClose | 是否显示关闭按钮 | boolean | — | false |
-| onClose | 关闭时的回调函数, 参数为被关闭的 message 实例 | function | — | — |
-
-### 方法
-调用 `Message` 或 `this.$message` 会返回当前 Message 的实例。如果需要手动关闭实例，可以调用它的 `close` 方法。
-
-| 方法名 | 说明 |
-| ---- | ---- |
-| close | 关闭当前的 Message |
+| 参数	|说明	|类型	|默认值 |
+|-------|----|-----|-------|
+|duration	|默认自动关闭延时，单位秒|	number|	3|
+|getContainer	|配置渲染节点的输出位置	|() => HTMLElement|	() => document.body|
+|maxCount	|最大显示数, 超过限制时，最早的消息会被自动关闭|	number|	-|
+|top	|消息距离顶部的位置	|number	|24|
+  

@@ -1,21 +1,53 @@
-## Popover 弹出框
+## Popover 气泡卡片
 
-### 基础用法
-Popover 的属性与 Tooltip 很类似，它们都是基于`Popper.js`开发的，因此对于重复属性，请参考 Tooltip 的文档，在此文档中不做详尽解释。
+点击/鼠标移入元素，弹出气泡式的卡片浮层。
 
-:::demo `trigger`属性用于设置何时触发 Popover ，提供三种触发方式：`hover`, `click` 和 `focus`。
+
+## 代码演示
+
+### 基本
+最简单的用法，浮层的大小由内容区域决定。
+
+:::demo
 ```js
 render() {
-  return (
+  const content = (
     <div>
-      <Popover placement="top-start" title="标题" width="200" trigger="hover" content="这是一段容,这是一段容,这是一段容,这是一段容。">
-        <Button>hover 激活</Button>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  );
+  return(
+    <Popover content={content} title="Title">
+      <Button type="primary">Hover me</Button>
+    </Popover>
+  )
+}
+```
+:::
+
+### 三种触发方式
+鼠标移入、聚集、点击。
+
+:::demo
+```js
+render() {
+  const content = (
+    <div>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  );
+  return(
+    <div>
+      <Popover content={content} title="Title" trigger="hover">
+        <Button>Hover me</Button>
       </Popover>
-      <Popover placement="bottom" title="标题" width="200" trigger="click" content="这是一段容,这是一段容,这是一段容,这是一段容。">
-        <Button>click 激活</Button>
+      <Popover content={content} title="Title" trigger="focus">
+        <Button>Focus me</Button>
       </Popover>
-      <Popover placement="right" title="标题" width="200" trigger="focus" content="这是一段容,这是一段容,这是一段容,这是一段容。">
-        <Button>focus 激活</Button>
+      <Popover content={content} title="Title" trigger="click">
+        <Button>Click me</Button>
       </Popover>
     </div>
   )
@@ -23,114 +55,156 @@ render() {
 ```
 :::
 
-### 嵌套信息
 
-可以在 Popover 中嵌套多种类型信息，以下为嵌套表格的例子。
+### 位置
 
-:::demo 利用分发取代`content`属性
-```js
-constructor(props){
-  super(props);
-
-  this.table = {
-    columns: [
-      {
-        label: "日期",
-        prop: "date",
-        width: 150
-      },
-      {
-        label: "姓名",
-        prop: "name",
-        width: 100
-      },
-      {
-        label: "地址",
-        prop: "address",
-        width: 300
-      }
-    ],
-    data: [{
-      date: '2016-05-02',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1518 弄'
-    }, {
-      date: '2016-05-04',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1517 弄'
-    }, {
-      date: '2016-05-01',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1519 弄'
-    }, {
-      date: '2016-05-03',
-      name: '王小虎',
-      address: '上海市普陀区金沙江路 1516 弄'
-    }]
-  }
-}
-
-render() {
-  return (
-    <Popover placement="right" title="标题" width="400" trigger="click" content={(
-      <Table
-       style={{width: '100%'}}
-       stripe={true}
-       columns={this.table.columns}
-       data={this.table.data} />
-    )}>
-      <Button>click 激活</Button>
-    </Popover>
-  )
-}
-```
-:::
-
-### 嵌套操作
-
-当然，你还可以嵌套操作，这相比 Dialog 更为轻量：
+位置有十二个方向。
 
 :::demo
 ```js
-constructor(props){
-  super(props);
-
-  this.state = {};
-}
-
-onDismiss() {
-  this.setState({
-    visible: false
-  });
-}
-
 render() {
-  return (
-    <Popover placement="top" width="160" trigger="click" visible={this.state.visible} content={(
-      <div>
-        <p>这是一段内容这是一段内容确定删除吗？</p>
-        <div style={{textAlign: 'right', margin: 0}}>
-          <Button size="mini" type="text" onClick={this.onDismiss.bind(this)}>取消</Button>
-          <Button type="primary" size="mini" onClick={this.onDismiss.bind(this)}>确定</Button>
-        </div>
+  const text = <span>Title</span>;
+  const content = (
+    <div>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  );
+
+  const buttonWidth = 70
+  return(
+    <div className="demo">
+      <div style={{ marginLeft: buttonWidth, whiteSpace: 'nowrap' }}>
+        <Popover placement="topLeft" title={text} content={content} trigger="click">
+          <Button>TL</Button>
+        </Popover>
+        <Popover placement="top" title={text} content={content} trigger="click">
+          <Button>Top</Button>
+        </Popover>
+        <Popover placement="topRight" title={text} content={content} trigger="click">
+          <Button>TR</Button>
+        </Popover>
       </div>
-    )}>
-      <Button>删除</Button>
-    </Popover>
+      <div style={{ width: buttonWidth, float: 'left' }}>
+        <Popover placement="leftTop" title={text} content={content} trigger="click">
+          <Button>LT</Button>
+        </Popover>
+        <Popover placement="left" title={text} content={content} trigger="click">
+          <Button>Left</Button>
+        </Popover>
+        <Popover placement="leftBottom" title={text} content={content} trigger="click">
+          <Button>LB</Button>
+        </Popover>
+      </div>
+      <div style={{ width: buttonWidth, marginLeft: (buttonWidth * 4) + 24 }}>
+        <Popover placement="rightTop" title={text} content={content} trigger="click">
+          <Button>RT</Button>
+        </Popover>
+        <Popover placement="right" title={text} content={content} trigger="click">
+          <Button>Right</Button>
+        </Popover>
+        <Popover placement="rightBottom" title={text} content={content} trigger="click">
+          <Button>RB</Button>
+        </Popover>
+      </div>
+      <div style={{ marginLeft: buttonWidth, clear: 'both', whiteSpace: 'nowrap' }}>
+        <Popover placement="bottomLeft" title={text} content={content} trigger="click">
+          <Button>BL</Button>
+        </Popover>
+        <Popover placement="bottom" title={text} content={content} trigger="click">
+          <Button>Bottom</Button>
+        </Popover>
+        <Popover placement="bottomRight" title={text} content={content} trigger="click">
+          <Button>BR</Button>
+        </Popover>
+      </div>
+    </div>
   )
 }
 ```
 :::
 
-### Attributes
-| 参数               | 说明                                                     | 类型              | 可选值      | 默认值 |
-|--------------------|----------------------------------------------------------|-------------------|-------------|--------|
-| trigger | 触发方式 | String  | click/focus/hover |    click    |
-|  title              | 标题 | String | — | — |
-|  content        |  显示的内容，也可以通过 `slot` 传入 DOM   | String            | — | — |
-|  width        |  宽度  | String, Number            | — | 最小宽度 150px |
-|  placement        |  出现位置  | String | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end |  bottom |
-|  visible        |  状态是否可见  | Boolean           | — |  false |
-|  transition     |  定义渐变动画      | String             | — | fade-in-linear |
-|  visibleArrow   |  是否显示 Tooltip 箭头 | Boolean | — | true |
-| popperClass | 为 popper 添加类名 | String | - | -|
+
+### 从浮层内关闭
+
+使用 visible 属性控制浮层显示。
+
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    visible: false,
+  }
+}
+
+hide(){
+  this.setState({
+    visible: false,
+  });
+}
+
+handleVisibleChange(visible){
+  this.setState({ visible });
+}
+
+render() {
+  return (
+    <Popover
+      content={<a onClick={this.hide.bind(this)}>Close</a>}
+      title="Title"
+      trigger="click"
+      visible={this.state.visible}
+      onVisibleChange={this.handleVisibleChange.bind(this)}
+    >
+      <Button type="primary">Click me</Button>
+    </Popover>
+  );
+}
+```
+:::
+
+
+
+### 箭头指向
+
+设置了 arrowPointAtCenter 后，箭头将指向目标元素的中心。
+
+:::demo
+```js
+render() {
+  const text = <span>Title</span>;
+  const content = (
+    <div>
+      <p>Content</p>
+      <p>Content</p>
+    </div>
+  )
+  return(
+    <div>
+      <Popover placement="topLeft" title={text} content={content}>
+        <Button>Align edge / 边缘对齐</Button>
+      </Popover>
+      <Popover placement="topLeft" title={text} content={content} arrowPointAtCenter>
+        <Button>Arrow points to center / 箭头指向中心</Button>
+      </Popover>
+    </div>
+  )
+}
+```
+:::
+
+
+## API
+
+
+| 参数	|说明	|类型	|默认值 |
+|-------|----|-----|-------|
+|content	|卡片内容	|string、ReactNode|	无|
+|title	|卡片标题	|string、ReactNode|	无|
+
+更多属性请参考 Tooltip。
+
+##注意
+请确保 Popover 的子元素能接受 onMouseEnter、onMouseLeave、onFocus、onClick 事件。
