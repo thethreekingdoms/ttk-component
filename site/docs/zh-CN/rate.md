@@ -2,89 +2,141 @@
 
 评分组件
 
-### 基本用法
+## 代码演示
 
-::: demo 评分被分为三个等级，可以利用颜色对分数及情感倾向进行分级（默认情况下不区分颜色）。三个等级所对应的颜色用过`colors`属性设置，而它们对应的两个阈值则通过 `lowThreshold` 和 `highThreshold` 设定， change可监听分值改变。
+
+### 基本
+
+最简单的用法。
+
+:::demo
+```js
+render() {
+  return<Rate />
+}
+```
+:::
+
+### 半星
+
+支持选中半星。
+
+:::demo
+```js
+render() {
+  return <Rate allowHalf defaultValue={2.5} />
+}
+```
+:::
+
+
+### 文案展现
+
+给评分组件加上文案展示。
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    value: 3,
+  }
+}
+
+handleChange(value) {
+  this.setState({ value });
+}
+
+render() {
+  const { value } = this.state;
+  return (
+    <span>
+      <Rate onChange={this.handleChange.bind(this)} value={value} />
+      {value && <span className="ant-rate-text">{value} stars</span>}
+    </span>
+  );
+}
+```
+:::
+
+
+### 只读
+
+只读，无法进行鼠标交互。
+
+:::demo
+```js
+render() {
+  return(
+    <Rate disabled defaultValue={2} />
+  )
+}
+```
+:::
+
+### 清除
+支持允许或者禁用清除。
+
+:::demo
 ```js
 render() {
   return (
-    <div className="intro-block">
-      <div className="block">
-        <span className="demonstration">默认不区分颜色</span>
-        <span className="wrapper">
-          <Rate onChange={(val) => alert(val)} />
-        </span>
-      </div>
-      <div className="block">
-        <span className="demonstration">区分颜色</span>
-        <span className="wrapper">
-          <Rate colors={['#99A9BF', '#F7BA2A', '#FF9900']} />
-        </span>
-      </div>
+    <div>
+      <Rate defaultValue={3} /> allowClear: true
+      <br />
+      <Rate allowClear={false} defaultValue={3} /> allowClear: false
     </div>
   )
 }
 ```
 :::
 
-### 允许半选
+### 其他字符
 
-可支持鼠标选择半星
+可以将星星替换为其他字符，比如字母，数字，字体图标甚至中文。
 
-::: demo 为组件设置 `allowHalf` 属性点击图标左侧可选择半星。
+:::demo
 ```js
 render() {
-  return <Rate allowHalf={true} onChange={(val) => console.log(val)} />
+  return (
+    <div>
+      <Rate character={<Icon type="heart" />} allowHalf />
+      <br />
+      <Rate character="A" allowHalf style={{ fontSize: 36 }} />
+      <br />
+      <Rate character="好" allowHalf />
+    </div>
+  )
 }
 ```
 :::
 
-### 辅助文字
 
-用辅助文字直接地表达对应分数
-
-::: demo 为组件设置 `showText` 属性会在右侧显示辅助文字。通过设置 `texts` 可以为每一个分值指定对应的辅助文字。`texts` 为一个数组，长度应等于最大值 `max`。
-```js
-render() {
-  return <Rate showText={true} />
-}
-```
-:::
+## api
 
 
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|allowClear	|是否允许再次点击后清除	|boolean	|true|
+|allowHalf|	是否允许半选|	boolean	|false|
+|autoFocus|	自动获取焦点|	boolean	|false|
+|character	|自定义字符|	ReactNode	|<Icon type="star" />|
+|className|	自定义样式类名|	string|	-|
+|count|	star 总数|	number|	5|
+|defaultValue	|默认值|	number|	0|
+|disabled	|只读，无法进行交互|	boolean	|false|
+|style|	自定义样式对象|	object|	-|
+|value|	当前数，受控值|	number|	-|
+|onBlur	|失去焦点时的回调	|Function()|	-|
+|onChange	|选择时的回调	|Function(value: number)|	-|
+|onFocus|	获取焦点时的回调|	Function()|	-|
+|onHoverChange|	鼠标经过时数值变化的回调|	Function(value: number)	|-|
+|onKeyDown|	按键回调|	Function(event)|	-|
 
-### 只读
+## 方法
 
-只读的评分用来展示分数，允许出现半星
+| 参数 | 说明 | 
+| --- | --- |
+|blur()	|移除焦点|
+|focus()|	获取焦点|
 
-::: demo 为组件设置 `disabled` 属性表示组件为只读，支持小数分值。此时若设置 `showText`，则会在右侧显示目前的分值。可以提供 `textTemplate` 作为显示模板，模板为一个包含了` {value} `的字符串，`{value}` 会被解析为分值。
-```js
-render() {
-  return <Rate disabled={true} value={3.9} showText={true} />
-}
-```
-:::
-
-### Attributes
-| 参数      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| max | 最大分值 | number | — | 5 |
-| disabled | 是否为只读 | boolean | — | false |
-| allowHalf | 是否允许半选 | boolean | — | false |
-| lowThreshold | 低分和中等分数的界限值，值本身<br>被划分在低分中 | number | — | 2 |
-| highThreshold | 高分和中等分数的界限值，值本身<br>被划分在高分中 | number | — | 4 |
-| colors | icon 的颜色数组，共有 3 个元素，<br>为 3 个分段所对应的颜色 | array | — | ['#F7BA2A', '#F7BA2A', '#F7BA2A'] |
-| voidColor | 未选中 icon 的颜色 | string | — | #C6D1DE |
-| disabledVoidColor | 只读时未选中 icon 的颜色 | string | — | #EFF2F7 |
-| iconClasses | icon 的类名数组，共有 3 个元素，<br>为 3 个分段所对应的类名 | array | — | ['el-icon-star-on', 'el-icon-star-on',<br>'el-icon-star-on'] |
-| voidIconClass | 未选中 icon 的类名 | string | — | el-icon-star-off |
-| disabledVoidIconClass | 只读时未选中 icon 的类名 | string | — | el-icon-star-on |
-| showText | 是否显示辅助文字 | boolean | — | false |
-| textColor | 辅助文字的颜色 | string | — | 1F2D3D |
-| texts | 辅助文字数组 | array | — | ['极差', '失望', '一般', '满意', '惊喜'] |
-| textTemplate | 只读时的辅助文字模板 | string | — | {value} |
-
-### Events
-| 事件名称      | 说明    | 回调参数      |
-|---------- |-------- |---------- |
-| onChange | 分值改变时触发 | 改变后的分值 |
