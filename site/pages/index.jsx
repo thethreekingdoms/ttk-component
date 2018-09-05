@@ -45,6 +45,7 @@ export default {
       'alert': require('./alert'),
       'loading': require('./loading'),
       'message': require('./message'),
+      'Modal': require('./modal'),
       'notification': require('./notification')
     },
     'Nav': {

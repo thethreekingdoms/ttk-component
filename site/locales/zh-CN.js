@@ -58,7 +58,8 @@ module.exports = {
     'BackTop': 'BackTop回到顶部',
     'activeLabelSelect': 'activeLabelSelect 多类型选择',
     'attachment': 'attachment 上传',
-    'list': 'list 列表'
+    'list': 'list 列表',
+    'Modal': 'Modal对话框'
   },
   misc: {
     'guide': '指南',
