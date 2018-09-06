@@ -1,3 +1,15 @@
-import {Tabs} from 'antd'
+import React from 'react'
+import { Tabs } from 'antd'
+import classNames from 'classnames'
 
-export default Tabs;
+function TabsComponent(props) {
+	let className = classNames({
+		'mk-tabs': true,
+		[props.className]: !!props.className
+	})
+	return <Tabs {...props} className={className} />
+}
+
+TabsComponent.TabPane = Tabs.TabPane
+
+export default TabsComponent
