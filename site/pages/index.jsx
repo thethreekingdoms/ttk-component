@@ -22,7 +22,7 @@ export default {
       'cascader': require('./cascader'),
       'switch': require('./switch'),
       'slider': require('./slider'),
-      'time-picker': require('./time-picker'),
+      'timePicker': require('./time-picker'),
       'date-picker': require('./date-picker'),
       'datetime-picker': require('./datetime-picker'),
       'upload': require('./upload'),

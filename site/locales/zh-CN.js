@@ -17,7 +17,7 @@ module.exports = {
     'cascader': 'Cascader 级联选择器',
     'switch': 'Switch 开关',
     'slider': 'Slider 滑块',
-    'time-picker': 'Time Picker 时间选择器',
+    'timePicker': 'TimePicker 时间选择器',
     'date-picker': 'Date Picker 日期选择器',
     'datetime-picker': 'DateTimePicker 日期时间选择器',
     'upload': 'Upload 上传',
