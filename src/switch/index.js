@@ -1,3 +1,13 @@
-import {Switch} from 'antd';
+import React from 'react'
+import { Switch } from 'antd'
+import classNames from 'classnames'
 
-export default Switch;
+function SwitchComponent(props) {
+	let className = classNames({
+		'mk-switch': true,
+		[props.className]: !!props.className
+	})
+	return <Switch {...props} className={className} />
+}
+
+export default SwitchComponent

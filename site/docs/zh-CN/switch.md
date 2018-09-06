@@ -1,131 +1,122 @@
 ## Switch 开关
 
-表示两种相互对立的状态间的切换，多用于触发「开/关」。
+开关选择器。
 
-### 基本用法
+## 代码演示
 
-:::demo 绑定`value`到一个`Boolean`类型的变量。可以使用`onText`属性与`offText`属性来设置开关的文字描述，使用`onColor`属性与`offColor`属性来设置开关的背景色。
+### 基本
+最简单的用法。
 
+:::demo
 ```js
-render() {
-  return (
-    <div>
-      <Switch
-        value={true}
-        onText=""
-        offText="">
-      </Switch>
-      <Switch
-        value={true}
-        onColor="#13ce66"
-        offColor="#ff4949">
-      </Switch>
-    </div>
-  )
+render () {
+  function onChange(checked) {
+    console.log(`switch to ${checked}`);
+  }
+  return <Switch defaultChecked onChange={onChange} />
 }
 ```
 :::
 
-### 扩展的 value 类型
 
-:::demo 设置`onValue`和`offValue`属性，接受`Boolean`, `String`或`Number`类型的值。
+### 不可用
+Switch 失效状态。
 
+:::demo
 ```js
-constructor(props) {
-  super(props);
-
+constructor() {
+  super()
   this.state = {
-    value: 100,
+    disabled: true,
   }
 }
 
+toggle() {
+  this.setState({
+    disabled: !this.state.disabled,
+  });
+}
+
 render() {
   return (
-    <Tooltip
-      placement="top"
-      content={
-        <div>Switch value: {this.state.value}</div>
-      }
-    >
-      <Switch
-        value={this.state.value}
-        onColor="#13ce66"
-        offColor="#ff4949"
-        onValue={100}
-        offValue={0}
-        onChange={(value)=>{this.setState({value: value})}}
-       >
-      </Switch>
-    </Tooltip>
-  )
+    <div>
+      <Switch disabled={this.state.disabled} defaultChecked />
+      <br />
+      <Button type="primary" onClick={this.toggle.bind(this)}>Toggle disabled</Button>
+    </div>
+  );
 }
 ```
 :::
 
-### 禁用状态
 
-:::demo 设置`disabled`属性，接受一个`Boolean`，设置`true`即可禁用。
+### 文字和图标
+带有文字和图标。
 
+:::demo
 ```js
-render() {
+render () {
   return (
     <div>
-      <Switch
-        value={true}
-        onText=""
-        offText=""
-        disabled>
-      </Switch>
-      <Switch
-        value={true}
-        disabled>
-      </Switch>
+      <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
+      <br />
+      <Switch checkedChildren="1" unCheckedChildren="0" />
+      <br />
+      <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} defaultChecked />
     </div>
   )
 }
 ```
 :::
 
-### 焦点
 
-:::demo 设置`allowFocus`属性，接受一个`Boolean`，设置`true`即可激活。
+### 两种大小
+size="small" 表示小号开关。
 
+:::demo
 ```js
 render() {
   return (
     <div>
-      <Switch
-        allowFocus={true}
-        onFocus={()=>console.log('focus')}
-        onBlur={()=>console.log('blur')}
-        >
-      </Switch>
+      <Switch defaultChecked />
+      <br />
+      <Switch size="small" defaultChecked />
     </div>
   )
 }
 ```
 :::
 
-### Attributes
 
-| 参数      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| disabled  | 是否禁用    | boolean   | — | false   |
-| width  | switch 的宽度（像素）    | number   | — | 58（有文字）/ 46（无文字） |
-| onIconClass  | switch 打开时所显示图标的类名，<br>设置此项会忽略 `onText`    | string   | — | — |
-| offIconClass  | switch 关闭时所显示图标的类名，<br>设置此项会忽略 `offText`    | string   | — | — |
-| onText  | switch 打开时的文字    | string   | — | ON |
-| offText  | switch 关闭时的文字    | string   | — | OFF |
-| onValue  | switch 打开时的值    | boolean / string / number | — | true |
-| offValue  | switch 关闭时的值    | boolean / string / number | — | false |
-| onColor  | switch 打开时的背景色    | string   | — | #20A0FF |
-| offColor  | switch 关闭时的背景色    | string   | — | #C0CCDA |
-| name  | switch 对应的 name 属性    | string   | — | — |
-| allowFocus | 允许 switch 触发 focus 和 blur 事件 | boolean | boolean | — | false |
+### 加载中
+标识开关操作仍在执行中。
 
-### Events
-| 事件名称      | 说明    | 回调参数      |
-|---------- |-------- |---------- |
-| onChange  | switch 状态发生变化时的回调函数    | value |
-| onBlur  | switch 失去焦点时触发，仅当 `allow-focus` 为 true 时生效 | event: Event |
-| onFocus  | switch 获得焦点时触发，仅当 `allow-focus` 为 true 时生效 | event: Event |
+:::demo
+```js
+render() {
+  return(
+    <div>
+      <Switch loading defaultChecked />
+      <br />
+      <Switch size="small" loading />
+    </div>
+  )
+}
+```
+:::
+
+
+## api
+
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|autoFocus|	组件自动获取焦点|	boolean|	false|
+|checked|	指定当前是否选中|	boolean	|false|
+|checkedChildren|	选中时的内容|	string、ReactNode	| |
+|defaultChecked	|初始是否选中|	boolean	|false|
+|disabled|是否禁用|	boolean	|false|
+|loading|	加载中的开关|	boolean|false|
+|size	|开关大小，可选值：default small|	string|	default|
+|unCheckedChildren|	非选中时的内容|	string、ReactNode	| |
+|onChange	|变化时回调函数|	Function(checked:Boolean)	| |
