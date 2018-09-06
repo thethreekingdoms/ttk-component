@@ -2,168 +2,301 @@
 
 用于标记和选择。
 
-### 基础用法
 
-:::demo 由`type`属性来选择tag的类型，也可以通过`color`属性来自定义背景色。
+## 代码演示
 
-```js
-render() {
-  return (
-    <div>
-      <Tag>标签一</Tag>
-      <Tag type="gray">标签二</Tag>
-      <Tag type="primary">标签三</Tag>
-      <Tag type="success">标签四</Tag>
-      <Tag type="warning">标签五</Tag>
-      <Tag type="danger">标签六</Tag>
-    </div>
-  )
-}
-```
-:::
+### 基本
 
-### 可移除标签
-
-:::demo 设置`closable`属性来定义一个可移除的标签，接受一个`Boolean`，设置为`true`即可。默认的标签移除时会附带渐变动画，如果不想使用，可以设置`closeTransition`属性，它接受一个`Boolean`，true 为关闭。设置`close`事件可以处理关闭后的回调函数。
-
-```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    tags: [
-      { key: 1, name: '标签一', type: '' },
-      { key: 2, name: '标签二', type: 'gray' },
-      { key: 5, name: '标签三', type: 'primary' },
-      { key: 3, name: '标签四', type: 'success' },
-      { key: 4, name: '标签五', type: 'warning' },
-      { key: 6, name: '标签六', type: 'danger' }
-    ]
-  }
-}
-
-handleClose(tag) {
-  const { tags } = this.state;
-
-  tags.splice(tags.map(el => el.key).indexOf(tag.key), 1);
-
-  this.setState({ tag });
-}
-
-render() {
-  return (
-    <div>
-      {
-        this.state.tags.map(tag => {
-          return (
-            <Tag
-              key={tag.key}
-              closable={true}
-              type={tag.type}
-              closeTransition={false}
-              onClose={this.handleClose.bind(this, tag)}>{tag.name}</Tag>
-          )
-        })
-      }
-    </div>
-  )
-}
-```
-:::
-
-### 动态编辑标签
-
-动态编辑标签可以通过点击标签关闭按钮后触发的 `onClose` 事件来实现
+基本标签的用法，可以通过添加 closable 变为可关闭标签。可关闭标签具有 onClose afterClose 两个事件。
 
 :::demo
 ```js
-constructor(props) {
-  super(props);
-
-  this.state = {
-    dynamicTags: ['标签一', '标签二', '标签三'],
-    inputVisible: false,
-    inputValue: ''
-  }
-}
-
-onKeyUp(e) {
-  if (e.keyCode === 13) {
-    this.handleInputConfirm();
-  }
-}
-
-onChange(value) {
-  this.setState({ inputValue: value });
-}
-
-handleClose(index) {
-  this.state.dynamicTags.splice(index, 1);
-  this.forceUpdate();
-}
-
-showInput() {
-  this.setState({ inputVisible: true }, () => {
-    this.refs.saveTagInput.focus();
-  });
-}
-
-handleInputConfirm() {
-  let inputValue = this.state.inputValue;
-
-  if (inputValue) {
-    this.state.dynamicTags.push(inputValue);
-  }
-
-  this.state.inputVisible = false;
-  this.state.inputValue = '';
-
-  this.forceUpdate();
-}
-
 render() {
-  return (
+  function log(e) {
+    console.log(e);
+  }
+
+  function preventDefault(e) {
+    e.preventDefault();
+    console.log('Clicked! But prevent default.');
+  }
+  return(
     <div>
-      {
-        this.state.dynamicTags.map((tag, index) => {
-          return (
-            <Tag
-              key={Math.random()}
-              closable={true}
-              closeTransition={false}
-              onClose={this.handleClose.bind(this, index)}>{tag}</Tag>
-          )
-        })
-      }
-      {
-        this.state.inputVisible ? (
-          <Input
-            className="input-new-tag"
-            value={this.state.inputValue}
-            ref="saveTagInput"
-            size="mini"
-            onChange={this.onChange.bind(this)}
-            onKeyUp={this.onKeyUp.bind(this)}
-            onBlur={this.handleInputConfirm.bind(this)}
-          />
-        ) : <Button className="button-new-tag" size="small" onClick={this.showInput.bind(this)}>+ New Tag</Button>
-      }
+      <Tag>Tag 1</Tag>
+      <Tag><a href="javascript:;">Link</a></Tag>
+      <Tag closable onClose={log}>Tag 2</Tag>
+      <Tag closable onClose={preventDefault}>Prevent Default</Tag>
     </div>
   )
 }
 ```
 :::
 
-### Attributes
-| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
-|---------- |-------------- |---------- |--------------------------------  |-------- |
-| type | 主题 | string | 'primary', 'gray', 'success', 'warning', 'danger' | — |
-| closable | 是否可关闭 | boolean | — | false |
-| closeTransition | 是否禁用关闭时的渐变动画 | boolean | — | false |
-| hit | 是否有边框描边 | boolean | — | false |
-| color | 背景色 | string | — | — |
 
-### Events
-| 事件名称 | 说明 | 回调参数 |
-|---------- |-------- |---------- |
-| onClose | 关闭tag时触发的事件 | — |
+
+### 多彩标签
+我们添加了多种预设色彩的标签样式，用作不同场景使用。如果预设值不能满足你的需求，可以设置为具体的色值。
+
+:::demo
+```js
+render() {
+  return (
+    <div>
+      <h4 style={{ marginBottom: 16 }}>Presets:</h4>
+      <div>
+        <Tag color="magenta">magenta</Tag>
+        <Tag color="red">red</Tag>
+        <Tag color="volcano">volcano</Tag>
+        <Tag color="orange">orange</Tag>
+        <Tag color="gold">gold</Tag>
+        <Tag color="lime">lime</Tag>
+        <Tag color="green">green</Tag>
+        <Tag color="cyan">cyan</Tag>
+        <Tag color="blue">blue</Tag>
+        <Tag color="geekblue">geekblue</Tag>
+        <Tag color="purple">purple</Tag>
+      </div>
+      <h4 style={{ margin: '16px 0' }}>Custom:</h4>
+      <div>
+        <Tag color="#f50">#f50</Tag>
+        <Tag color="#2db7f5">#2db7f5</Tag>
+        <Tag color="#87d068">#87d068</Tag>
+        <Tag color="#108ee9">#108ee9</Tag>
+      </div>
+    </div>
+  )
+}
+```
+:::
+
+
+### 动态添加和删除
+用数组生成一组标签，可以动态添加和删除，通过监听删除动画结束的事件 afterClose 实现。
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+    inputVisible: false,
+    inputValue: '',
+  };
+}
+
+handleClose(removedTag){
+  const tags = this.state.tags.filter(tag => tag !== removedTag);
+  console.log(tags);
+  this.setState({ tags });
+}
+
+showInput(){
+  this.setState({ inputVisible: true });
+}
+
+handleInputChange(e){
+  this.setState({ inputValue: e.target.value });
+}
+
+handleInputConfirm() {
+  const state = this.state;
+  const inputValue = state.inputValue;
+  let tags = state.tags;
+  if (inputValue && tags.indexOf(inputValue) === -1) {
+    tags = [...tags, inputValue];
+  }
+  console.log(tags);
+  this.setState({
+    tags,
+    inputVisible: false,
+    inputValue: '',
+  });
+}
+
+saveInputRef(input){
+  if( input ) {
+    return this.input = input
+  }
+  
+}
+
+render() {
+  const { tags, inputVisible, inputValue } = this.state;
+  return (
+    <div>
+      {tags.map((tag, index) => {
+        const isLongTag = tag.length > 20;
+        const tagElem = (
+          <Tag key={tag} closable={index !== 0} afterClose={() => this.handleClose(tag)}>
+            {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+          </Tag>
+        );
+        return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+      })}
+      {inputVisible && (
+        <Input
+          ref={this.saveInputRef.bind(this)}
+          type="text"
+          size="small"
+          style={{ width: 78 }}
+          value={inputValue}
+          onChange={this.handleInputChange.bind(this)}
+          onBlur={this.handleInputConfirm.bind(this)}
+          onPressEnter={this.handleInputConfirm.bind(this)}
+        />
+      )}
+      {!inputVisible && (
+        <Tag
+          onClick={this.showInput.bind(this)}
+          style={{ background: '#fff', borderStyle: 'dashed' }}
+        >
+          <Icon type="plus" /> New Tag
+        </Tag>
+      )}
+    </div>
+  );
+}
+```
+:::
+
+
+
+### 可选择
+
+可通过 CheckableTag 实现类似 Checkbox 的效果，点击切换选中效果。
+
+该组件为完全受控组件，不支持非受控用法。
+
+:::demo
+```js
+constructor(){
+  super()
+  this.state = { 
+    checked: true 
+  }
+}
+
+handleChange(checked){
+  this.setState({ checked });
+}
+
+render() {
+  const CheckableTag = Tag.CheckableTag;
+  return (
+    <CheckableTag checked={this.state.checked} onChange={this.handleChange.bind(this)} >demo1</CheckableTag>
+  )
+}
+
+```
+:::
+
+
+
+### 热门标签
+
+
+选择你感兴趣的话题。
+
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    selectedTags: [],
+  };
+}
+
+handleChange(tag, checked) {
+  const { selectedTags } = this.state;
+  const nextSelectedTags = checked
+    ? [...selectedTags, tag]
+    : selectedTags.filter(t => t !== tag);
+  console.log('You are interested in: ', nextSelectedTags);
+  this.setState({ selectedTags: nextSelectedTags });
+}
+
+render() {
+  const CheckableTag = Tag.CheckableTag;
+  const tagsFromServer = ['Movies', 'Books', 'Music', 'Sports'];  
+  const { selectedTags } = this.state;
+  return (
+    <div>
+      <h6 style={{ marginRight: 8, display: 'inline' }}>Categories:</h6>
+      {tagsFromServer.map(tag => (
+        <CheckableTag
+          key={tag}
+          checked={selectedTags.indexOf(tag) > -1}
+          onChange={checked => this.handleChange(tag, checked)}
+        >
+          {tag}
+        </CheckableTag>
+      ))}
+    </div>
+  );
+}
+```
+:::
+
+
+
+
+### 控制关闭状态
+
+通过 visible 属性控制关闭状态。
+
+
+:::demo
+```js
+constructor() {
+  super()
+  this.state = {
+    visible: true,
+  }
+}
+
+render() {
+  return (
+    <div>
+      <Tag
+        closable
+        visible={this.state.visible}
+        onClose={() => this.setState({ visible: false })}
+      >
+        Movies
+      </Tag>
+      <br />
+      <Button
+        size="small"
+        onClick={() => this.setState({ visible: !this.state.visible })}
+      >
+        Toggle
+      </Button>
+    </div>
+  );
+}
+```
+:::
+
+
+## API
+
+
+### Tag
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|afterClose	|关闭动画完成后的回调|	() => void|	-|
+|closable	|标签是否可以关闭|	boolean	|false|
+|color|标签色|	string|	-|
+|onClose	|关闭时的回调|	(e) => void	|-|
+|visible|	是否显示标签|	boolean|	true|
+
+
+### Tag.CheckableTag
+
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|checked	|设置标签的选中状态|	boolean	|false|
+|onChange	|点击标签时触发的回调|	(checked) => void|	-|

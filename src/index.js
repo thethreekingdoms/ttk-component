@@ -42,6 +42,7 @@ export { default as Switch } from './switch';
 export { default as Table } from './table';
 export { default as Tabs } from './tabs';
 export { default as Tag } from './tag';
+export { default as Timeline } from './timeline';
 export { default as Tooltip } from './tooltip';
 export { default as Transfer } from './transfer';
 export { default as TreeSelect } from './TreeSelect';

@@ -36,6 +36,7 @@ export default {
       'table': require('./table'),
       'tag': require('./tag'),
       'progress': require('./progress'),
+      'timeline': require('./timeline'),
       'tree': require('./tree'),
       'pagination': require('./pagination'),
       'badge': require('./badge'),

@@ -60,7 +60,8 @@ module.exports = {
     'attachment': 'attachment 上传',
     'list': 'list 列表',
     'Modal': 'Modal对话框',
-    'spin': 'spin 加载中'
+    'spin': 'spin 加载中',
+    'timeline': 'Timeline 时间轴'
   },
   misc: {
     'guide': '新手指南',
