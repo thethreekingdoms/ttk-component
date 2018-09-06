@@ -1,60 +1,79 @@
 ## Tooltip 文字提示
 
-常用于展示鼠标 hover 时的提示信息。
+## 代码演示
 
-### 基础用法
 
-在这里我们提供 9 种不同方向的展示方式，可以通过以下完整示例来理解，选择你要的效果。
+### 基本
 
-:::demo 使用`content`属性来决定`hover`时的提示信息。由`placement`属性决定展示效果：`placement`属性值为：`方向-对齐位置`；四个方向：`top`、`left`、`right`、`bottom`；三种对齐位置：`start`, `end`，默认为空。如`placement="left-end"`，则提示信息出现在目标元素的左侧，且提示信息的底部与目标元素的底部对齐。
+最简单的用法。
 
+:::demo
 ```js
 render() {
   return (
-    <div className="box">
-      <div className="top">
-        <Tooltip className="item" effect="dark" content="Top Left 提示文字" placement="top-start">
-          <Button>上左</Button>
-        </Tooltip>
-        <Tooltip className="item" effect="dark" content="Top Center 提示文字" placement="top">
-          <Button>上边</Button>
-        </Tooltip>
-        <Tooltip className="item" effect="dark" content="Top Right 提示文字" placement="top-end">
-          <Button>上右</Button>
-        </Tooltip>
-      </div>
-      <div className="left">
-        <Tooltip className="item" effect="dark" content="Left Top 提示文字" placement="left-start">
-          <Button>左上</Button>
-        </Tooltip>
-        <Tooltip className="item" effect="dark" content="Left Center 提示文字" placement="left">
-          <Button>左边</Button>
-        </Tooltip>
-        <Tooltip className="item" effect="dark" content="Left Bottom 提示文字" placement="left-end">
-          <Button>左下</Button>
-        </Tooltip>
-      </div>
+    <Tooltip title="prompt text">
+      <span>Tooltip will show when mouse enter.</span>
+    </Tooltip>
+  )
+}
+```
+:::
 
-      <div className="right">
-        <Tooltip className="item" effect="dark" content="Right Top 提示文字" placement="right-start">
-          <Button>右上</Button>
+
+### 位置
+
+位置有 12 个方向。
+
+:::demo
+```js
+render() {
+  const text = <span>prompt text</span>;
+
+  const buttonWidth = 70;
+  return (
+    <div className="demo">
+      <div style={{ marginLeft: buttonWidth, whiteSpace: 'nowrap' }}>
+        <Tooltip placement="topLeft" title={text}>
+          <Button>TL</Button>
         </Tooltip>
-        <Tooltip className="item" effect="dark" content="Right Center 提示文字" placement="right">
-          <Button>右边</Button>
+        <Tooltip placement="top" title={text}>
+          <Button>Top</Button>
         </Tooltip>
-        <Tooltip className="item" effect="dark" content="Right Bottom 提示文字" placement="right-end">
-          <Button>右下</Button>
+        <Tooltip placement="topRight" title={text}>
+          <Button>TR</Button>
         </Tooltip>
       </div>
-      <div className="bottom">
-        <Tooltip className="item" effect="dark" content="Bottom Left 提示文字" placement="bottom-start">
-          <Button>下左</Button>
+      <div style={{ width: buttonWidth, float: 'left' }}>
+        <Tooltip placement="leftTop" title={text}>
+          <Button>LT</Button>
         </Tooltip>
-        <Tooltip className="item" effect="dark" content="Bottom Center 提示文字" placement="bottom">
-          <Button>下边</Button>
+        <Tooltip placement="left" title={text}>
+          <Button>Left</Button>
         </Tooltip>
-        <Tooltip className="item" effect="dark" content="Bottom Right 提示文字" placement="bottom-end">
-          <Button>下右</Button>
+        <Tooltip placement="leftBottom" title={text}>
+          <Button>LB</Button>
+        </Tooltip>
+      </div>
+      <div style={{ width: buttonWidth, marginLeft: (buttonWidth * 4) + 24 }}>
+        <Tooltip placement="rightTop" title={text}>
+          <Button>RT</Button>
+        </Tooltip>
+        <Tooltip placement="right" title={text}>
+          <Button>Right</Button>
+        </Tooltip>
+        <Tooltip placement="rightBottom" title={text}>
+          <Button>RB</Button>
+        </Tooltip>
+      </div>
+      <div style={{ marginLeft: buttonWidth, clear: 'both', whiteSpace: 'nowrap' }}>
+        <Tooltip placement="bottomLeft" title={text}>
+          <Button>BL</Button>
+        </Tooltip>
+        <Tooltip placement="bottom" title={text}>
+          <Button>Bottom</Button>
+        </Tooltip>
+        <Tooltip placement="bottomRight" title={text}>
+          <Button>BR</Button>
         </Tooltip>
       </div>
     </div>
@@ -63,21 +82,21 @@ render() {
 ```
 :::
 
-### 主题
 
-Tooltip 组件提供了两个不同的主题：`dark`和`light`。
+### 箭头指向
+设置了 arrowPointAtCenter 后，箭头将指向目标元素的中心。
 
 
-:::demo 通过设置`effect`属性来改变主题，默认为`dark`。
+:::demo
 ```js
 render() {
   return (
     <div>
-      <Tooltip content="Top center" placement="top">
-        <Button>Dark</Button>
+      <Tooltip placement="topLeft" title="Prompt Text">
+        <Button>Align edge / 边缘对齐</Button>
       </Tooltip>
-      <Tooltip content="Bottom center" placement="bottom" effect="light">
-        <Button>Light</Button>
+      <Tooltip placement="topLeft" title="Prompt Text" arrowPointAtCenter>
+        <Button>Arrow points to center / 箭头指向中心</Button>
       </Tooltip>
     </div>
   )
@@ -85,60 +104,36 @@ render() {
 ```
 :::
 
-### 更多 Content
 
-展示多行文本或者是设置文本内容的格式
+## API
 
-:::demo `content`属性也可以是`ReactElement`。
-```js
-render() {
-  return (
-    <Tooltip
-      placement="top"
-      content={
-        <div>多行信息<br/>第二行信息</div>
-      }
-    >
-      <Button>Top center</Button>
-    </Tooltip>
-  )
-}
-```
-:::
 
-### 高级扩展
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|title	|提示文字|	string、ReactNode|() => ReactNode	|无|
 
-除了这些基本设置外，还有一些属性可以让使用者更好的定制自己的效果：`transition`属性可以定制显隐的动画效果，默认为`fade-in-linear`。如果需要关闭`tooltip`功能，`disabled`属性可以满足这个需求，它接受一个`Boolean`，设置为`true`即可。
 
-:::demo 通过 state 中的 disabled 控制是否触发 tooltip
-```js
-constructor(props){
-  super(props);
+### 共同的 API
 
-  this.state = {
-    disabled: false
-  }
-}
+以下 API 为 Tooltip、Popconfirm、Popover 共享的 API。
 
-render() {
-  return (
-    <Tooltip disabled={ this.state.disabled } content="点击关闭 tooltip 功能" placement="bottom" effect="light">
-      <Button onClick={ e => this.setState({ disabled: true}) }>点击关闭 tooltip 功能</Button>
-    </Tooltip>
-  )
-}
-```
-:::
 
-### Attributes
-| 参数               | 说明                                                     | 类型              | 可选值      | 默认值 |
-|--------------------|----------------------------------------------------------|-------------------|-------------|--------|
-|  effect        |  默认提供的主题  | String            | `dark`, `light`  | dark  |
-|  content        |  显示的内容  | String/Node            | — | — |
-|  placement        |  Tooltip 的出现位置  | String           |  `top`, `top-start`, `top-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`, `right`, `right-start`, `right-end` |  bottom |
-|  visible        |  状态是否可见  | Boolean           | — |  false |
-|  disabled       |  Tooltip 是否可用  | Boolean           | — |  false |
-|  transition     |  定义渐变动画      | String             | — | `fade-in-linear` |
-|  visibleArrow   |  是否显示 Tooltip 箭头 | Boolean | — | true |
-| openDelay | 延迟出现，单位毫秒 | Number | — | 0 |
-| manual | 手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效 | Boolean | true,false| false |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|arrowPointAtCenter	|箭头是否指向目标元素中心，antd@1.11+ 支持	|boolean|	false|
+|autoAdjustOverflow	|气泡被遮挡时自动调整位置	|boolean|	true|
+|defaultVisible|	默认是否显隐|	boolean|	false|
+|getPopupContainer|	浮层渲染父节点，默认渲染到 body 上。2.5.2 之前请使用 getTooltipContainer	|Function(triggerNode)|	() => document.body|
+|mouseEnterDelay	|鼠标移入后延时多少才显示 Tooltip，单位：秒|	number|	0|
+|mouseLeaveDelay|	鼠标移出后延时多少才隐藏 Tooltip，单位：秒	|number|	0.1|
+|overlayClassName	|卡片类名|	string|	无|
+|overlayStyle	|卡片样式	|object|	无|
+|placement	|气泡框位置，可选 top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom|	string|	top|
+|trigger	|触发行为，可选 hover/focus/click/contextMenu	|string	|hover|
+|visible	|用于手动控制浮层显隐|	boolean	|false|
+|onVisibleChange|	显示隐藏的回调	|(visible) => void|	无|
+
+
+## 注意
+请确保 Tooltip 的子元素能接受 onMouseEnter、onMouseLeave、onFocus、onClick 事件。
+

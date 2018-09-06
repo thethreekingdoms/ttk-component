@@ -1,3 +1,11 @@
-import Tooltip from 'antd';
+import React from 'react'
+import { Tooltip } from 'antd'
+import classNames from 'classnames'
 
-export default Tooltip;
+export default function TooltipfirmComponent(props) {
+	let className = classNames({
+		'mk-tooltip': true,
+		[props.className]: !!props.className
+	})
+	return <Tooltip {...props} className={className} />
+}
