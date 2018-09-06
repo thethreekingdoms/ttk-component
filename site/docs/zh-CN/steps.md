@@ -1,128 +1,276 @@
-## Steps 步骤条
-引导用户按照流程完成任务的分步导航条，可根据实际应用场景设定步骤，步骤不得少于 2 步。
+## Steps步骤条
 
-### 基础用法
+引导用户按照流程完成任务的导航条。
 
+## 代码演示
+
+### 基本用法
 简单的步骤条。
 
-:::demo 设置`active`属性，接受一个`Number`，表明步骤的 index，从 0 开始。需要定宽的步骤条时，设置`space`属性即可，它接受`Boolean`，单位为`px`，如果不设置，则为自适应。设置`finishStatus`属性可以改变已经完成的步骤的状态。
+
+:::demo
+```js
+render() {
+  const Step = Steps.Step
+  return (
+    <Steps current={1}>
+      <Step title="Finished" description="This is a description." />
+      <Step title="In Progress" description="This is a description." />
+      <Step title="Waiting" description="This is a description." />
+    </Steps>
+  )
+}
+```
+:::
+
+
+
+### 迷你版
+
+迷你版的步骤条，通过设置 <Steps size="small"> 启用.
+
+:::demo
+```js
+render() {
+  const Step = Steps.Step
+  return (
+    <Steps>
+      <Step status="finish" title="Login" icon={<Icon type="user" />} />
+      <Step status="finish" title="Verification" icon={<Icon type="solution" />} />
+      <Step status="process" title="Pay" icon={<Icon type="loading" />} />
+      <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
+    </Steps>
+  )
+}
+```
+:::
+
+
+### 带图标的步骤条
+通过设置 Steps.Step 的 icon 属性，可以启用自定义图标。
+
+:::demo
+```js
+render() {
+  const Step = Steps.Step;
+  return (
+    <Steps>
+      <Step status="finish" title="Login" icon={<Icon type="user" />} />
+      <Step status="finish" title="Verification" icon={<Icon type="solution" />} />
+      <Step status="process" title="Pay" icon={<Icon type="loading" />} />
+      <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
+    </Steps>
+  )
+}
+```
+:::
+
+
+
+### 步骤切换
+
+通常配合内容及按钮使用，表示一个流程的处理进度。
+
+:::demo
 ```js
 constructor(props) {
   super(props);
-
   this.state = {
-    active: 0
+    current: 0,
   };
 }
 
 next() {
-  let active = this.state.active + 1;
-  if (active > 3) {
-    active = 0;
-  }
-  this.setState({ active });
+  const current = this.state.current + 1;
+  this.setState({ current });
+}
+
+prev() {
+  const current = this.state.current - 1;
+  this.setState({ current });
 }
 
 render() {
+  const Step = Steps.Step;
+
+  const steps = [{
+    title: 'First',
+    content: 'First-content',
+  }, {
+    title: 'Second',
+    content: 'Second-content',
+  }, {
+    title: 'Last',
+    content: 'Last-content',
+  }];
+  const { current } = this.state;
   return (
     <div>
-      <Steps space={200} active={this.state.active} finishStatus="success">
-        <Steps.Step title="步骤 1"></Steps.Step>
-        <Steps.Step title="步骤 2"></Steps.Step>
-        <Steps.Step title="步骤 3"></Steps.Step>
+      <Steps current={current}>
+        {steps.map(item => <Step key={item.title} title={item.title} />)}
       </Steps>
-      <Button onClick={() => this.next()}>下一步</Button>
+      <div className="steps-content">{steps[current].content}</div>
+      <div className="steps-action">
+        {
+          current < steps.length - 1
+          && <Button type="primary" onClick={() => this.next()}>Next</Button>
+        }
+        {
+          current === steps.length - 1
+          && <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
+        }
+        {
+          current > 0
+          && (
+          <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+            Previous
+          </Button>
+          )
+        }
+      </div>
     </div>
-  )
+  );
 }
 ```
-
 :::
 
-### 含状态步骤条
 
-每一步骤显示出该步骤的状态。
+### 竖直方向的步骤条
 
-:::demo 也可以使用`title`具名分发。
+简单的竖直方向的步骤条。
+
+:::demo
 ```js
 render() {
+  const Step = Steps.Step;
   return (
-    <Steps space={100} active={1} finishStatus="success">
-      <Steps.Step title="已完成"></Steps.Step>
-      <Steps.Step title="进行中"></Steps.Step>
-      <Steps.Step title="步骤 3"></Steps.Step>
+    <Steps direction="vertical" current={1}>
+      <Step title="Finished" description="This is a description." />
+      <Step title="In Progress" description="This is a description." />
+      <Step title="Waiting" description="This is a description." />
     </Steps>
   )
 }
 ```
 :::
 
-### 有描述的步骤条
 
-每个步骤有其对应的步骤状态描述。
+### 竖直方向的小型步骤条
 
-:::demo 带描述的步骤条。
+简单的竖直方向的小型步骤条。
+
+
+:::demo
 ```js
 render() {
+  const Step = Steps.Step;
   return (
-    <Steps space={200} active={1}>
-      <Steps.Step title="步骤 1" description="这是一段很长很长很长的描述性文字"></Steps.Step>
-      <Steps.Step title="步骤 2" description="这是一段很长很长很长的描述性文字"></Steps.Step>
-      <Steps.Step title="步骤 3" description="这是一段很长很长很长的描述性文字"></Steps.Step>
+    <Steps direction="vertical" size="small" current={1}>
+      <Step title="Finished" description="This is a description." />
+      <Step title="In Progress" description="This is a description." />
+      <Step title="Waiting" description="This is a description." />
     </Steps>
   )
 }
 ```
 :::
 
-### 带图标的步骤条
-步骤条内可以启用各种自定义的图标。
 
-:::demo 通过`icon`属性来设置图标，图标的类型可以参考 Icon 组件的文档。
+### 步骤运行错误
+
+使用 Steps 的 status 属性来指定当前步骤的状态。
+
+:::demo
 ```js
 render() {
+  const Step = Steps.Step;
   return (
-    <Steps space={100} active={1}>
-      <Steps.Step title="步骤 1" icon="edit"></Steps.Step>
-      <Steps.Step title="步骤 2" icon="upload"></Steps.Step>
-      <Steps.Step title="步骤 3" icon="picture"></Steps.Step>
+    <Steps current={1} status="error">
+      <Step title="Finished" description="This is a description" />
+      <Step title="In Process" description="This is a description" />
+      <Step title="Waiting" description="This is a description" />
     </Steps>
   )
 }
 ```
 :::
 
-### 竖式步骤条
 
-竖直方向的步骤条。
+### 点状步骤条
 
-:::demo 只需要在`Steps`元素中设置`direction`属性为`vertical`即可。
+包含步骤点的进度条。
+
+:::demo
 ```js
 render() {
+  const Step = Steps.Step
   return (
-    <Steps space={100} direction="vertical" active={1}>
-      <Steps.Step title="步骤 1"></Steps.Step>
-      <Steps.Step title="步骤 2"></Steps.Step>
-      <Steps.Step title="步骤 3"></Steps.Step>
+    <Steps progressDot current={1}>
+      <Step title="Finished" description="This is a description." />
+      <Step title="In Progress" description="This is a description." />
+      <Step title="Waiting" description="This is a description." />
     </Steps>
   )
 }
 ```
 :::
 
-### Steps Attributes
 
-| 参数      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| space | 每个 step 的间距，不填写将自适应间距 | Number | — | — |
-| direction | 显示方向 | string | vertical/horizontal | horizontal |
-| active | 设置当前激活步骤  | number | — | 0 |
-| processStatus | 设置当前步骤的状态 | string | wait/process/finish/error/success | process |
-| finishStatus | 设置结束步骤的状态 | string | wait/process/finish/error/success | finish |
+### 自定义点状步骤条
+为点状步骤条增加自定义展示。
 
-### Step Attributes
-| 参数      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| title | 标题 | string | — | — |
-| description | 描述性文字 | string/ReactElement | — | — |
-| icon | 图标 | Element Icon 提供的图标，如果要使用自定义图标可以通过自定义element的方式写入 | string | — |
+:::demo
+```js
+render() {
+  const Step = Steps.Step;
+
+  const customDot = (dot, { status, index }) => (
+    <Popover content={<span>step {index} status: {status}</span>}>
+      {dot}
+    </Popover>
+  );
+  return (
+    <Steps current={1} progressDot={customDot}>
+      <Step title="Finished" description="You can hover on the dot." />
+      <Step title="In Progress" description="You can hover on the dot." />
+      <Step title="Waiting" description="You can hover on the dot." />
+      <Step title="Waiting" description="You can hover on the dot." />
+    </Steps>
+  )
+}
+```
+:::
+
+### API
+
+```
+<Steps>
+  <Step title="第一步" />
+  <Step title="第二步" />
+  <Step title="第三步" />
+</Steps>
+```
+
+
+### Steps
+
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|current	|指定当前步骤，从 0 开始记数。在子 Step 元素中，可以通过 status 属性覆盖状态|	number|	0|
+|direction	|指定步骤条方向。目前支持水平（horizontal）和竖直（vertical）两种方向	|string|	horizontal|
+|labelPlacement	|指定标签放置位置，默认水平放图标右侧，可选vertical放图标下方|	string|	horizontal|
+|progressDot	|点状步骤条，可以设置为一个 function,labelPlacement 将强制为vertical|	Boolean or (iconDot, {index, status, title, description}) => ReactNode|	false
+|size	|指定大小，目前支持普通（default）和迷你（small）|	string|	default|
+|status	|指定当前步骤的状态，可选 wait process finish error	|string|	process|
+|initial|	起始序号，从 0 开始记数|	number|	0|
+
+
+### Steps.Step
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+|description|	步骤的详情描述，可选|	string\ReactNode|	-|
+|icon	|步骤图标的类型，可选	|string\ReactNode	|-|
+|status	|指定状态。当不配置该属性时，会使用 Steps 的 current 来自动指定状态。可选：wait process finish error|	string|	wait|
+|title|	标题|	string\ReactNode|	-|
