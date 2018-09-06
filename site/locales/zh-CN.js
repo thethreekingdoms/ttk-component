@@ -59,7 +59,8 @@ module.exports = {
     'activeLabelSelect': 'activeLabelSelect 多类型选择',
     'attachment': 'attachment 上传',
     'list': 'list 列表',
-    'Modal': 'Modal对话框'
+    'Modal': 'Modal对话框',
+    'spin': 'spin 加载中'
   },
   misc: {
     'guide': '指南',

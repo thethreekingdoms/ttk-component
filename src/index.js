@@ -36,6 +36,7 @@ export { default as Radio } from './radio';
 export { default as Rate } from './rate';
 export { default as Select } from './select';
 export { default as Slider } from './slider';
+export { default as Spin } from './spin';
 export { default as Steps } from './steps';
 export { default as Switch } from './switch';
 export { default as Table } from './table';
