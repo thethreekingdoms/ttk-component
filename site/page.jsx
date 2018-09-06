@@ -109,7 +109,7 @@ export default class App extends React.Component {
             </h1>
             <ul className="nav">
               <li className="nav-item">
-                <a href={`https://github.com/thethreekingdoms/`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
+                <a href={`https://www.kancloud.cn/test001001/ttk-guide`} target="_blank" rel="noopener noreferrer">{this.getLocale('misc.guide')}</a>
               </li>
               <li className="nav-item">
                 <a className="active">{this.getLocale('misc.component')}</a>

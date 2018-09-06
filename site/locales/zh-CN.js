@@ -63,7 +63,7 @@ module.exports = {
     'spin': 'spin 加载中'
   },
   misc: {
-    'guide': '指南',
+    'guide': '新手指南',
     'component': '组件',
     'resource': '脚手架',
     'development': '开发指南',
