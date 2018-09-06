@@ -30,7 +30,8 @@ export default {
       'color-picker': require('./color-picker'),
       'transfer': require('./transfer'),
       'form': require('./form'),
-      'attachment': require('./attachment')
+      'attachment': require('./attachment'),
+      'TreeSelect': require('./treeSelect')
     },
     'Data': {
       'table': require('./table'),
