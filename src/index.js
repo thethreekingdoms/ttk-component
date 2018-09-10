@@ -20,6 +20,7 @@ export { default as Col } from './col';
 export { default as Collapse } from './collapse';
 export { default as ColumnsSetting } from './columnsSetting';
 export { default as DatePicker } from './date-picker';
+export { default as DateRangeDatePicker } from './dateRangeDatePicker'
 export { default as Dropdown } from './dropdown';
 export { default as Form } from './form';
 export { default as Icon } from './icon';

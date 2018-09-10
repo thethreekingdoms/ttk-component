@@ -32,7 +32,8 @@ export default {
       'transfer': require('./transfer'),
       'form': require('./form'),
       'attachment': require('./attachment'),
-      'TreeSelect': require('./treeSelect')
+      'TreeSelect': require('./treeSelect'),
+      'dateRangeMonthPicker': require('./dateRangeMonthPicker')
     },
     'Data': {
       'table': require('./table'),
