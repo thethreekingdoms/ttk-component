@@ -63,7 +63,8 @@ module.exports = {
     'spin': 'spin 加载中',
     'timeline': 'Timeline 时间轴',
     'TreeSelect': 'TreeSelect树选择',
-    'antdSelect': 'AntdSelect  antd选择器'
+    'antdSelect': 'AntdSelect  antd选择器',
+    'columnsSetting': 'ColumnsSetting 栏目设置'
   },
   misc: {
     'guide': '新手指南',

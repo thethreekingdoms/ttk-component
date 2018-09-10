@@ -78,7 +78,8 @@ export default {
       'card': require('./card'),
       'carousel': require('./carousel'),
       'collapse': require('./collapse'),
-      'spin': require('./spin')
+      'spin': require('./spin'),
+      'columnsSetting': require('./columnsSetting')
     }
   }
 }
