@@ -1,4 +1,4 @@
-## Select antd选择器
+## AntdSelect antd选择器
 
 
 ## 代码演示
@@ -17,9 +17,7 @@ render() {
     }
     return(
         <div>
-            <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange} dropdownFooter={
-                    <Button style={{width: '100%', borderRadius: '0'}}>新增</Button>
-                }>
+            <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
                 <Option value="jack">Jack</Option>
                 <Option value="lucy">Lucy</Option>
                 <Option value="disabled" disabled>Disabled</Option>
@@ -412,7 +410,6 @@ render() {
 |onSelect	|被选中时调用，参数为选中项的 value (或 key) 值	|function(value, option:Option)	|-|
 |open	|是否展开下拉菜单|	boolean|	-|
 |onDropdownVisibleChange|	展开下拉菜单的回调|	function(open)|	-|
-|dropdownFooter | 下拉选择内最后一行的内容，并且改行是固定在最底部的| ReactNode | - |
 
 
 + 注意，如果发现下拉菜单跟随页面滚动，或者需要在其他弹层中触发 Select，请尝试使用 getPopupContainer={triggerNode => triggerNode.parentNode} 将下拉弹层渲染节点固定在触发器的父元素中。

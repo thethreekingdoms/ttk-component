@@ -62,7 +62,8 @@ module.exports = {
     'Modal': 'Modal对话框',
     'spin': 'spin 加载中',
     'timeline': 'Timeline 时间轴',
-    'TreeSelect': 'TreeSelect树选择'
+    'TreeSelect': 'TreeSelect树选择',
+    'antdSelect': 'AntdSelect  antd选择器'
   },
   misc: {
     'guide': '新手指南',

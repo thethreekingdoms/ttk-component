@@ -1,9 +1,11 @@
+
 export { default as i18n } from './locale';
 
 export { default as Activelabelselect } from './activelabelselect';
 export { default as Affix } from './affix'
 export { default as Alert } from './alert'
 export { default as Anchor } from './anchor'
+export { default as AntdSelect } from './antdSelect'
 export { default as Attachment } from './attachment'
 export { default as AutoComplete } from './auto-complete'
 export { default as BackTop } from './backTop'

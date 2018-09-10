@@ -14,6 +14,7 @@ export default {
     },
     'Form': {
       'AutoComplete': require('./auto-complete'),
+      'antdSelect': require('./antdSelect'),
       'radio': require('./radio'),
       'checkbox': require('./checkbox'),
       'input': require('./input'),
