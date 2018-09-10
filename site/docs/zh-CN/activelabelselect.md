@@ -1,18 +1,86 @@
-## activeLabelSelect 多类型选择  
+## ActiveLabelSelect 多类型选择  
 
-用于不同类型的选择控件。
 
 ::: demo Alert 组件提供四种主题，由`type`属性指定，默认值为`info`。
 ```js
+constructor() {
+    super()
+    this.state = {
+        selectLabel: 'fruit',
+        value: null
+    }
+}
+
+onChange(key, value) {
+    this.setState({
+        selectLabel: key, 
+        value: value
+    })
+}
+
 render() {
-  return (
-    <div>
-      <Activelabelselect title="成功提示的文案" type="success" />
-      <Activelabelselect title="消息提示的文案" type="info" />
-      <Activelabelselect title="警告提示的文案" type="warning" />
-      <Activelabelselect title="错误提示的文案" type="error" />
-    </div>
-  )
+    console.log(this.state)
+    const options = [{
+        name: "水果",
+        key: 'fruit',
+        value: 'apple', // value表示选中的值
+        children: [{
+            label: '苹果',
+            value: 'apple'
+        },{
+            label: '草莓',
+            value: '草莓'
+        },{
+            label: '香蕉',
+            value: 'xiangjiao'
+        },{
+            label: '西瓜',
+            value: 'xigua'
+        }]
+        
+    }, {
+        name: "城市",
+        key: 'city',
+        value: '1', // value表示选中的值
+        children: [{
+            label: '北京',
+            value: '1'
+        },{
+            label: '上海',
+            value: '2'
+        },{
+            label: '浙江',
+            value: '3'
+        },{
+            label: '深圳',
+            value: '4'
+        }]
+        
+    }, {
+        name: "交通工具",
+        key: 'road',
+        value: '1', // value表示选中的值
+        children: [{
+            label: '汽车',
+            value: '1'
+        },{
+            label: '火车',
+            value: '2'
+        },{
+            label: '轮船',
+            value: '3'
+        },{
+            label: '飞机',
+            value: '4'
+        }]
+        
+    }]
+    const { selectLabel, value } = this.state
+    return (
+        <div>
+            <Activelabelselect onChange={this.onChange.bind(this)} selectLabel={selectLabel} value={value}  option={options}  />
+        </div>
+    )
 }
 ```
 :::

@@ -53,8 +53,8 @@ class ActiveLabelSelect extends React.Component{
     renderLable = () => {                
         let { option, selectLabel } = this.state
         const item = option.find(item => item.key == selectLabel)  
-        
-        if(item){
+        const propsValue = this.props.value
+        if(item && ( propsValue === null || propsValue === undefined || propsValue === '' )){
             this.state.value = item.value 
         }           
         if( !selectLabel) {
