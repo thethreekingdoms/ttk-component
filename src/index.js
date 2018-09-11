@@ -38,6 +38,7 @@ export { default as Popover } from './popover';
 export { default as Progress } from './progress';
 export { default as Radio } from './radio';
 export { default as Rate } from './rate';
+export { default as SearchCard } from './search';
 export { default as Select } from './select';
 export { default as Slider } from './slider';
 export { default as Spin } from './spin';

@@ -81,7 +81,8 @@ export default {
       'carousel': require('./carousel'),
       'collapse': require('./collapse'),
       'spin': require('./spin'),
-      'columnsSetting': require('./columnsSetting')
+      'columnsSetting': require('./columnsSetting'),
+      'SearchCard': require('./searchcard')
     }
   }
 }

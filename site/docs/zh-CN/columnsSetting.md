@@ -115,10 +115,12 @@ cancelClick(){
 classNames(obj) {
     let str = ''
     for( const key in obj ) {
+        console.log(key, obj[key])
         if( obj[key] ) {
-            str = key + ' '
+            str = str + key + ' '
         }
     }
+    console.log(str)
     return str
 }
 
