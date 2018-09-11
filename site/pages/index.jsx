@@ -82,7 +82,8 @@ export default {
       'collapse': require('./collapse'),
       'spin': require('./spin'),
       'columnsSetting': require('./columnsSetting'),
-      'SearchCard': require('./searchcard')
+      'SearchCard': require('./searchcard'),
+      'tableSettingCard': require('./tableSettingCard')
     }
   }
 }
