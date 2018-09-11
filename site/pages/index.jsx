@@ -33,7 +33,8 @@ export default {
       'form': require('./form'),
       'attachment': require('./attachment'),
       'TreeSelect': require('./treeSelect'),
-      'dateRangeMonthPicker': require('./dateRangeMonthPicker')
+      'dateRangeMonthPicker': require('./dateRangeMonthPicker'),
+      'dateRangeDatePicker': require('./dateRangeDatePicker')
     },
     'Data': {
       'table': require('./table'),

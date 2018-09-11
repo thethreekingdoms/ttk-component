@@ -1,4 +1,5 @@
-## DateRangeDatePicker
+## DateRangeMonthPicker
+
 
 该组件是针对DatePicker组件的封装，主要适用于选择区间的组件。同样DatePicker也有选择区间的组件。如果该组件不符合你的要求。请查看DatePicker
 
@@ -11,9 +12,10 @@
 render() {
     return (
         <div>
-            <DateRangeDatePicker
-                format="YYYY-MM-DD"
+            <DateRangeMonthPicker
+                format="YYYY-MM"
                 allowClear={false}
+                mode= {['month', 'month']}
                 startEnableDate="2018-02"
                 onChange={(value)=> console.log(value)}
                 value={[moment('2018-07-01'), moment('2018-11-01')]}
@@ -34,5 +36,5 @@ render() {
 |value	|组件的值	|array	| |
 
 
-+ 其他的设置项请参考antd的DatePicker组件
++ 其他的设置项请参考antd的MonthPicker组件
 

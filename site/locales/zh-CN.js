@@ -65,7 +65,8 @@ module.exports = {
     'TreeSelect': 'TreeSelect树选择',
     'antdSelect': 'AntdSelect  antd选择器',
     'columnsSetting': 'ColumnsSetting 栏目设置',
-    'dateRangeMonthPicker': 'DateRangeMonthPicker 月份期间选择'
+    'dateRangeMonthPicker': 'DateRangeMonthPicker 月份期间选择',
+    'dateRangeDatePicker': 'DateRangeDatePicker 日期间选择'
   },
   misc: {
     'guide': '新手指南',
