@@ -19,6 +19,7 @@ export { default as Checkbox } from './checkbox';
 export { default as Col } from './col';
 export { default as Collapse } from './collapse';
 export { default as ColumnsSetting } from './columnsSetting';
+export { default as DataGrid } from './datagrid';
 export { default as DatePicker } from './date-picker';
 export { default as DateRangeDatePicker } from './dateRangeDatePicker'
 export { default as DateRangeMonthPicker } from './dateRangeMonthPicker'

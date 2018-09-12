@@ -68,7 +68,8 @@ module.exports = {
     'dateRangeMonthPicker': 'DateRangeMonthPicker 月份期间选择',
     'dateRangeDatePicker': 'DateRangeDatePicker 日期间选择',
     'SearchCard': 'SearchCard 高级搜索框',
-    'tableSettingCard': 'TableSettingCard 表格设置项'
+    'tableSettingCard': 'TableSettingCard 表格设置项',
+    'DataGrid': 'DataGrid 表格'
   },
   misc: {
     'guide': '新手指南',

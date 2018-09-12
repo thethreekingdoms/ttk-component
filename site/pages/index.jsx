@@ -38,6 +38,7 @@ export default {
     },
     'Data': {
       'table': require('./table'),
+      'DataGrid': require('./DataGrid'),
       'tag': require('./tag'),
       'progress': require('./progress'),
       'timeline': require('./timeline'),
