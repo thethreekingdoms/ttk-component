@@ -25,10 +25,10 @@ export default {
       'slider': require('./slider'),
       'timePicker': require('./time-picker'),
       'date-picker': require('./date-picker'),
-      'datetime-picker': require('./datetime-picker'),
+      // 'datetime-picker': require('./datetime-picker'),
       'upload': require('./upload'),
       'rate': require('./rate'),
-      'color-picker': require('./color-picker'),
+      // 'color-picker': require('./color-picker'),
       'transfer': require('./transfer'),
       'form': require('./form'),
       'attachment': require('./attachment'),
@@ -48,7 +48,7 @@ export default {
     },
     'Notice': {
       'alert': require('./alert'),
-      'loading': require('./loading'),
+      // 'loading': require('./loading'),
       'message': require('./message'),
       'Modal': require('./modal'),
       'notification': require('./notification')
@@ -65,10 +65,10 @@ export default {
       'echarts': require('./echarts')
     },
     'Composite': {
-      'alert1': require('./alert'),
-      'loading1': require('./loading'),
-      'messag1e': require('./message'),
-      'notification1': require('./notification'),
+      // 'alert1': require('./alert'),
+      // 'loading1': require('./loading'),
+      // 'messag1e': require('./message'),
+      // 'notification1': require('./notification'),
       'activeLabelSelect': require('./activelabelselect')
     },
     'Others': {
