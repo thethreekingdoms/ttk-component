@@ -65,10 +65,6 @@ export default {
       'echarts': require('./echarts')
     },
     'Composite': {
-      // 'alert1': require('./alert'),
-      // 'loading1': require('./loading'),
-      // 'messag1e': require('./message'),
-      // 'notification1': require('./notification'),
       'activeLabelSelect': require('./activelabelselect')
     },
     'Others': {
