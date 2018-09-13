@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import { Map, List, fromJS } from 'immutable'
 import Button from '../button/index'
-import { action as MetaAction, AppLoader } from 'edf-meta-engine'
 import clonedeep from 'lodash.clonedeep'
 import SearchForm from './ie8SearchForm'
 import normalSearchFuc from './ie8NormalSearch'
@@ -416,7 +415,7 @@ class SearchComponent extends Component {
                         zIndex: '10',
                         background: '#fff',
                         boxShadow: '0 0 5px #999',
-                        display: `${this.state.count == 1 ? 'block' : 　'none'}`
+                        display: `${this.state.count == 1 ? 'block' : 'none'}`
                     }}
                 >
                     <div
@@ -425,7 +424,7 @@ class SearchComponent extends Component {
                             maxHeight: `${containerHeight}px`
                             // top: `${this.state.data.get('childVisible') ? '0' : `-${this.state.height}px`}`
                         }}
-                        className={`mk-search-high-search animated ${this.state.data.get('childVisible') ? 'slideInDown' : 　'slideOutUp'}`}
+                        className={`mk-search-high-search animated ${this.state.data.get('childVisible') ? 'slideInDown' : 'slideOutUp'}`}
                     >
                         <h2>
                             <div>高级查询</div>
