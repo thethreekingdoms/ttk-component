@@ -182,10 +182,10 @@ export default class App extends React.Component {
               <p className="footer-main-title">TTK-Component</p>
               <a href="" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.feedback')}</a>
               <a href="" target="_blank" rel="noopener noreferrer" className="footer-main-link">{this.getLocale('misc.contribution')}</a>
-              <a href={`http://io/#/${this.state.locale}/component/${this.state.page}`} target="_blank" rel="noopener noreferrer" className="footer-main-link">关于我们</a>
+              <a href="//github.com/ttk-fed" target="_blank" rel="noopener noreferrer" className="footer-main-link">关于我们</a>
             </div>
             <div className="footer-social">
-              <a href="//github.com/eleme/TTK-Component" target="_blank" rel="noopener noreferrer">
+              <a href="//github.com/thethreekingdoms/ttk-component" target="_blank" rel="noopener noreferrer">
                 <img src={require('./assets/github.png')} />
               </a>
             </div>
